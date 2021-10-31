@@ -50,6 +50,6 @@ router.get('/resize', function(req, res) {
 app.use('/', router);
 app.listen(process.env.port || 3000);
 
-app.use(express.static(__dirname + '/static'));
+// app.use(express.static(__dirname + '/static'));
 
 console.log('Running at Port 3000');
