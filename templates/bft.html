@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Scripts -->
+    <script>
+        window.transitionToPage = function(href) {
+            document.querySelector('body').style.opacity = 0
+            setTimeout(function() {
+                window.location.href = href
+            }, 500)
+        }
+
+        document.addEventListener('DOMContentLoaded', function(event) {
+            document.querySelector('body').style.opacity = 1
+        })
+    </script>
 
     <style>
         body {
@@ -50,7 +62,7 @@
         </div>
 
         <div class="wrapper-drag-div">
-            <a href="/templates/tile_customization.html" class="btn btn-primary">Customize my tile!</a>
+            <span onclick="transitionToPage('/templates/tile_customization')" class="btn btn-primary">Customize my tile!</span>
         </div>
 
         <br />
