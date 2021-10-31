@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+
+    <!-- Scripts -->
+    <script src="/scripts/quizMain.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            opacity: 10;
+            transition: opacity .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to PASSION</div>
+    <br/>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-11">
+                <h2 id="qns-starter">I like to...</h2>
+                <br />
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div>
+                            <h4 id="qns">Program an application</h4>
+                        </div>
+                        <br />
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="5" value="3" class="slider" id="myRange">
+                        </div>
+                        <table style='width: 100%'>
+                            <tr>
+                                <td style="width:33%; text-align: left">Completely unable to</td>
+                                <td style="width:33%; text-align: center">Moderately</td>
+                                <td style="width:33%; text-align: right">Extremely</td>
+                            </tr>
+                        </table>
+                    </div>
+                </article>
+                <div>
+                    <button type="button" class="btn btn-primary" id="next" name="next" onclick="onNext()">Next</button>
+                    <button type="button" class="btn btn-primary" id="submit" name="submit" onclick="submit()" style="visibility: hidden; float: right;">Review your PASSION</button>
+                </div>
+                <br />
+            </div>
+        </div>
+</body>
+</html>
