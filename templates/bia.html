@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <!-- Scripts -->
+    <script src="../scripts/ScoreTallying.js"></script>
+    <script>
+        window.transitionToPage = function(href) {
+            document.querySelector('body').style.opacity = 0
+            setTimeout(function() {
+                window.location.href = href
+            }, 500)
+        }
+
+        document.addEventListener('DOMContentLoaded', function(event) {
+            document.querySelector('body').style.opacity = 1
+        })
+    </script>
+
+    <style>
+        body {
+            opacity: 10;
+            transition: opacity .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to PASSION</div>
+    <br/>
+    <main role="main" class="container">
+        <div>
+            <div style="text-align: center;">
+                <p style="font-size: large;">Based on the results, we recommend... </p>
+                <h1><b>Diploma in Business Intelligence and Analytics (C43)</b></h1>
+                <p>Range of net EL2R2B2: 6 to 11</p>
+            </div>
+            <br/>
+            <div>
+                <h3>Unlock the world of data</h3>
+            </div>
+            <div>
+                <p>Did you know that 90% of the world’s data was created in just the last two years, mostly from our smart devices? Much of this data can be used to help organisations manage workloads better, deliver services more efficiently and maintain
+                    competitiveness. Discover how you can help companies make sense of data by analysing and interpreting it to influence business decisions.</p>
+            </div>
+            <div>
+                <p>You will develop competencies in applying techniques and tools for data visualisation, analytics and modelling. Learn how to manage big data, develop innovative applications and explore artificial intelligence technologies.</p>
+            </div>
+            <div>
+                <p><b>The Diploma in Business Intelligence & Analytics is for you if you want to extract, analyse, and manage complex data to help make strategic business decisions.</b></p>
+            </div>
+        </div>
+
+        <div>
+            <h3>Benefits: </h3>
+            <ul>
+                <li>Learn techniques and tools to extract information from datasets, social media and websites.</li>
+                <li>Discover trends, intent levels and sentiments around topics.</li>
+                <li>Learn about human behaviour and discover how decisions are made.</li>
+                <li>Develop highly sought-after skills and learn how you can understand data to make crucial business and investment decisions.</li>
+                <li>Gain crucial skills for the modern workplace to kickstart an exciting career.</li>
+            </ul>
+        </div>
+
+        <div class="wrapper-drag-div">
+            <span onclick="transitionToPage('/drag_and_drop')" class="btn btn-primary">Customize my tile!</span>
+        </div>
+
+        <br/>
+</body>
+
+</html>

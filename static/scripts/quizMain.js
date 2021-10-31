@@ -532,23 +532,23 @@ function submit() {
     })
 
     if (assignDiploma() === "bia") {
-        transitionToPage("/bia");
+        transitionToPage("/templates/bia");
     }
 
     if (assignDiploma() === "bft") {
-        transitionToPage("/bft");
+        transitionToPage("/templates/bft");
     }
 
     if (assignDiploma() === "ifs") {
-        transitionToPage("/ifs");
+        transitionToPage("/templates/ifs");
     }
 
     if (assignDiploma() === "it") {
-        transitionToPage("/it");
+        transitionToPage("/templates/it");
     }
 
     if (assignDiploma() === "dsf") {
-        transitionToPage("/dsf");
+        transitionToPage("/templates/dsf");
     }
 }
 
