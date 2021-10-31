@@ -7,7 +7,7 @@ const router = express.Router();
 // const jquery = require('jquery')(dom.window);
 
 router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/templates/home.html')); //__dirname resolves to project folder
+    res.sendFile(path.join(__dirname + '/templates/home.html')); //__dirname resolves to your project folder
 });
 
 router.get('/quiz', function(req, res) {
@@ -50,5 +50,6 @@ router.get('/resize', function(req, res) {
 app.use('/', router);
 app.listen(process.env.port || 3000);
 
+app.use(express.static(__dirname + '/static'));
 
 console.log('Running at Port 3000');
