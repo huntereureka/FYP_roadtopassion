@@ -121,6 +121,28 @@
         .popupCloseButton:hover {
             background-color: #ccc;
         }
+
+        .popupCloseButton1 {
+            background-color: #fff;
+            border: 3px solid #999;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-family: arial;
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 25px;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        
+        .popupCloseButton1:hover {
+            background-color: #ccc;
+        }
         
         .trigger_popup_fricc {
             cursor: pointer;
@@ -140,6 +162,8 @@
         <div>
             <div class="popupCloseButton">&times;</div>
             <p>1) Add your name in the bottom right. <br /> 2) Select, add, and resize stickers to your liking. <br /> 3) Swipe up to add your tile to the mural!</p>
+            <div class="popupCloseButton1">&times;</div>
+            <p>You can only add a maximum of 8 stickers!</p>
         </div>
     </div>
 
@@ -249,7 +273,7 @@
                 itemURL = e.target.src;
                 Konva.Image.fromURL(itemURL, function(image1) {
                     if (click_count === 8) {
-                        alert("You can put a maximum of 8 stickers!")
+                        load_desc1();
                     } else {
                         layer.add(image1);
                         image1.draggable(true);
@@ -297,6 +321,15 @@
                 $('.hover_bkgr_fricc').hide();
             });
             $('.popupCloseButton').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });
+        };
+
+        function load_desc1() {
+            $('.hover_bkgr_fricc').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });
+            $('.popupCloseButton1').click(function() {
                 $('.hover_bkgr_fricc').hide();
             });
         };
