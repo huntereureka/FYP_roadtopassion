@@ -1,0 +1,22 @@
+{
+  "name": "fyp_roadtopassion",
+  "version": "1.0.0",
+  "description": "Quiz + tiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huntereureka/FYP_roadtopassion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huntereureka/FYP_roadtopassion/issues"
+  },
+  "homepage": "https://github.com/huntereureka/FYP_roadtopassion#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
