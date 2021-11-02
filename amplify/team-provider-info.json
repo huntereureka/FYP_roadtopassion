@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fypfinal-dev-224107-authRole",
+      "UnauthRoleArn": "arn:aws:iam::942916054170:role/amplify-fypfinal-dev-224107-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::942916054170:role/amplify-fypfinal-dev-224107-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-fypfinal-dev-224107-deployment",
+      "UnauthRoleName": "amplify-fypfinal-dev-224107-unauthRole",
+      "StackName": "amplify-fypfinal-dev-224107",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:942916054170:stack/amplify-fypfinal-dev-224107/ecf8ff10-3bea-11ec-9f2d-0a4ded7b01d4",
+      "AmplifyAppId": "d2k9b8hdz72qyb"
+    },
+    "categories": {
+      "auth": {
+        "fypfinal528cbf3e": {}
+      }
+    }
+  }
+}
