@@ -400,6 +400,7 @@
                     pixelRatio: 3
                 });
                 downloadURI(dataURL, 'stage.png');
+                await Storage.put("test.txt", "Hello");
             }
         });
     </script>
