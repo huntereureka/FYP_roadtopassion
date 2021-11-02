@@ -233,7 +233,7 @@
         <img src="/static/icons/vr.png" />
 
     </div>
-    <button id="save" style="visibility: collapse;">Save as image</button></div>
+    <button id="save" onclick=saveImage()>Save as image</button></div>
 
     <script>
         // needed to set max no. of stickers
@@ -400,9 +400,12 @@
                     pixelRatio: 3
                 });
                 downloadURI(dataURL, 'stage.png');
-                await Storage.put("test.txt", "Hello");
             }
         });
+
+        async function saveImage() {
+            await Storage.put("test.txt", "Hello");
+        }
     </script>
 </body>
 
