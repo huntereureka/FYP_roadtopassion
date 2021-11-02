@@ -28,12 +28,3 @@ export const run = async() => {
     }
 };
 run();
-
-function load_desc() {
-    $('.hover_bkgr_fricc').click(function() {
-        $('.hover_bkgr_fricc').hide();
-    });
-    $('.popupCloseButton').click(function() {
-        $('.hover_bkgr_fricc').hide();
-    });
-};
