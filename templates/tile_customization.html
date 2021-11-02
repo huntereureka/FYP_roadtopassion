@@ -404,7 +404,8 @@
         });
 
         async function saveImage() {
-            await Storage.put("test.txt", "Hello");
+            const result = await Storage.put("test.txt", "Hello");
+            return result
         }
     </script>
 </body>
