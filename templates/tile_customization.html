@@ -240,6 +240,7 @@
 
     </div>
     <button id="save" onclick=saveImage()>Save as image</button></div>
+    <input type="file" onChange={onChange} />;
 
     <script>
         // needed to set max no. of stickers
@@ -419,8 +420,6 @@
                 console.log("Error uploading file: ", error);
             }
         }
-
-        <input type="file" onChange={onChange} />;
     </script>
 </body>
 
