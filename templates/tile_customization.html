@@ -209,7 +209,7 @@
 
     <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to PASSION
     </div>
-    <div id="container"></div>
+    <div id="container" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()"></div>
     <p><b>You can have a maximum of 8 stickers!</b></p>
     <div id="drag-items" class="scroll">
         <img src="/static/icons/analysis.png" />
@@ -403,6 +403,25 @@
         //         downloadURI(dataURL, 'stage.png');
         //     }
         // });
+
+        var startingX, startingY, movingX, movingY;
+
+        function touchStart(evt) {
+            startingX = evt.touches[0].clientX;
+            startingY = evt.touches[0].clientY;
+        }
+
+        function touchMove(evt) {
+            movingX = evt.touches[0].clientX;
+            movingY = evt.touches[0].clientY;
+        }
+
+        function touchEnd() {
+            if (startingY - 100 > movingY) {
+                console.log('up');
+                alert('swipe up detected');
+            }
+        }
     </script>
 </body>
 

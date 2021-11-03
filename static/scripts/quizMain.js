@@ -258,17 +258,17 @@ function onNext() {
         if ((+range) === 5) {
             ifs += 5;
             it += 5;
-            bia += 4;
+            bia += 2;
         }
         if ((+range) === 4) {
             ifs += 4;
             it += 4;
-            bia += 4;
+            bia += 2;
         }
         if ((+range) === 3) {
             ifs += 3;
             it += 3;
-            bia += 3;
+            bia += 2;
         }
         if ((+range) === 2) {
             ifs += 2;
