@@ -6,6 +6,10 @@ const router = express.Router();
 // const dom = new jsdom.JSDOM("");
 // const jquery = require('jquery')(dom.window);
 
+import Amplify, { Storage } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/templates/home.html')); //__dirname resolves to your project folder
 });
