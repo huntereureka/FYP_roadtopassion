@@ -8,16 +8,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/static/main.css" />
 
     <!-- Scripts -->
     <script src="https://unpkg.com/konva@8.2.1/konva.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
-    <script type="module" src="/static/scripts/uploadFile.js"></script>
 
-    <title>Road to PASSION - Tile customization</title>
+    <title>Road to PASSION - Tile customisation</title>
     <style>
         body {
             margin: 0;
@@ -193,11 +191,10 @@
             display: inline-block;
             font-weight: bold;
         }
-        /* Popup box BEGIN */
     </style>
 </head>
 
-<body onload="load_desc()" style="overflow: hidden;">
+<body onload="user_name()" style="overflow: hidden;">
 
     <div class="hover_bkgr_fricc">
         <span class="helper"></span>
@@ -237,6 +234,28 @@
     <button id="save" style="visibility: collapse;">Save as image</button></div>
 
     <script>
+        function user_name() {
+            var inputName;
+
+            do {
+                inputName = prompt("Enter your name: ")
+                if (inputName == "" || inputName == null) {
+                    alert("String is empty")
+                } else if (inputName.toLowerCase() == "fuck") {
+                    alert("String contains vulgarities")
+                }
+            } while (inputName == "" || inputName == null || inputName.toLowerCase() == "fuck");
+
+            alert("Hello, " + inputName + "!");
+
+            $('.hover_bkgr_fricc').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });
+            $('.popupCloseButton').click(function() {
+                $('.hover_bkgr_fricc').hide();
+            });
+        }
+
         // needed to set max no. of stickers
         var click_count = 0;
 

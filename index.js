@@ -6,9 +6,9 @@ const router = express.Router();
 // const dom = new jsdom.JSDOM("");
 // const jquery = require('jquery')(dom.window);
 
-import Amplify, { Storage } from 'aws-amplify';
-import awsconfig from './aws-exports';
-Amplify.configure(awsconfig);
+// import Amplify, { Storage } from 'aws-amplify';
+// import awsconfig from './aws-exports';
+// Amplify.configure(awsconfig);
 
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/templates/home.html')); //__dirname resolves to your project folder
@@ -39,7 +39,7 @@ router.get('/dsf', function(req, res) {
 });
 
 router.get('/drag_and_drop', function(req, res) {
-    res.sendFile(path.join(__dirname + '/templates/save_image.html'));
+    res.sendFile(path.join(__dirname + '/templates/tile_customization.html'));
 });
 
 router.get('/coordinates', function(req, res) {
@@ -50,8 +50,13 @@ router.get('/resize', function(req, res) {
     res.sendFile(path.join(__dirname + '/templates/resize.html'));
 });
 
+router.get('/text', function(req, res) {
+    res.sendFile(path.join(__dirname + '/templates/test_text.html')); //__dirname resolves to your project folder
+});
+
 //add the router
 app.use('/', router);
+
 app.listen(process.env.port || 3000);
 
 
