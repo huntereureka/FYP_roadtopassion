@@ -360,6 +360,35 @@
                     tr.nodes(nodes);
                 }
             });
+
+            // determine url of tapped element
+            var itemURL = '';
+            document
+                .getElementById('drag-items')
+                .addEventListener('click', function(e) {
+                    stage.setPointersPositions(e);
+                    itemURL = e.target.src;
+                    Konva.Image.fromURL(itemURL, function(image1) {
+                        if (click_count === 8) {
+                            $(window).load(function() {
+                                $(".trigger_popup_fricc").click(function() {
+                                    $('.hover_bkgr_fricc').show();
+                                });
+                                $('.hover_bkgr_fricc').click(function() {
+                                    $('.hover_bkgr_fricc').hide();
+                                });
+                                $('.popupCloseButton').click(function() {
+                                    $('.hover_bkgr_fricc').hide();
+                                });
+                            });
+                        } else {
+                            layer.add(image1);
+                            image1.draggable(true);
+                            click_count += 1;
+                            console.log(click_count);
+                        }
+                    });
+                });
         }
 
         // function from https://stackoverflow.com/a/15832662/512042
@@ -384,35 +413,6 @@
             },
             false
         );
-
-        // determine url of tapped element
-        var itemURL = '';
-        document
-            .getElementById('drag-items')
-            .addEventListener('click', function(e) {
-                stage.setPointersPositions(e);
-                itemURL = e.target.src;
-                Konva.Image.fromURL(itemURL, function(image1) {
-                    if (click_count === 8) {
-                        $(window).load(function() {
-                            $(".trigger_popup_fricc").click(function() {
-                                $('.hover_bkgr_fricc').show();
-                            });
-                            $('.hover_bkgr_fricc').click(function() {
-                                $('.hover_bkgr_fricc').hide();
-                            });
-                            $('.popupCloseButton').click(function() {
-                                $('.hover_bkgr_fricc').hide();
-                            });
-                        });
-                    } else {
-                        layer.add(image1);
-                        image1.draggable(true);
-                        click_count += 1;
-                        console.log(click_count);
-                    }
-                });
-            });
 
         function load_pic_test() {
             $(window).load(function() {
@@ -451,24 +451,24 @@
         //     }
         // });
 
-        var startingX, startingY, movingX, movingY;
+        // var startingX, startingY, movingX, movingY;
 
-        function touchStart(evt) {
-            startingX = evt.touches[0].clientX;
-            startingY = evt.touches[0].clientY;
-        }
+        // function touchStart(evt) {
+        //     startingX = evt.touches[0].clientX;
+        //     startingY = evt.touches[0].clientY;
+        // }
 
-        function touchMove(evt) {
-            movingX = evt.touches[0].clientX;
-            movingY = evt.touches[0].clientY;
-        }
+        // function touchMove(evt) {
+        //     movingX = evt.touches[0].clientX;
+        //     movingY = evt.touches[0].clientY;
+        // }
 
-        function touchEnd() {
-            if (startingY - 100 > movingY) {
-                console.log('up');
-                alert('swipe up detected');
-            }
-        }
+        // function touchEnd() {
+        //     if (startingY - 100 > movingY) {
+        //         console.log('up');
+        //         alert('swipe up detected');
+        //     }
+        // }
     </script>
 </body>
 
