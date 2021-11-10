@@ -473,6 +473,10 @@ function submit() {
     if (assignDiploma() === "dsf") {
         transitionToPage("/templates/dsf");
     }
+
+    if (assignDiploma() === "cict") {
+        transitionToPage("/templates/cict");
+    }
 }
 
 function calculateDiplomaFinal() {
@@ -516,10 +520,6 @@ function calculateDiplomaFinal() {
         "dba final: ", dba_final);
 
     assignDiploma();
-
-    if (qns_counter_one >= 5 || qns_counter_three >= 5 || qns_counter_five >= 5) {
-        console.log("Recommend CICT")
-    }
 }
 
 function calculateRIASEC() {
@@ -624,6 +624,10 @@ function calculateRIASEC() {
 
 // Assigning scores based on diploma 
 function assignDiploma() {
+    if (qns_counter_one >= 5 || qns_counter_three >= 5 || qns_counter_five >= 5) {
+        return ("cict");
+    }
+
     const array_of_diplomas = [dsf_final, dcs_final, dit_final, dbft_final, dba_final];
     let max = Math.max(...array_of_diplomas);
 
