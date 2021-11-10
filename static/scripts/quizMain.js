@@ -413,6 +413,115 @@ function onNext() {
     }
 }
 
+// Redirecting webpage
+function submit() {
+    let range = document.getElementById("myRange").value; // setting var of user's answer
+
+    if ((+range) === 5) {
+        dsf += 5;
+        ifs += 4;
+        qns_counter_five += 1;
+    }
+    if ((+range) === 4) {
+        dsf += 4;
+        ifs += 4;
+    }
+    if ((+range) === 3) {
+        dsf += 3;
+        ifs += 3;
+        qns_counter_three += 1;
+    }
+    if ((+range) === 2) {
+        dsf += 2;
+        ifs += 2;
+    }
+    if ((+range) === 1) {
+        dsf += 1;
+        ifs += 1;
+        qns_counter_one += 1;
+    }
+
+    calculateDiplomaFinal();
+
+    window.transitionToPage = function(href) {
+        document.querySelector('body').style.opacity = 0
+        setTimeout(function() {
+            window.location.href = href
+        }, 500)
+    }
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+        document.querySelector('body').style.opacity = 1
+    })
+
+    if (assignDiploma() === "bia") {
+        transitionToPage("/templates/bia");
+    }
+
+    if (assignDiploma() === "bft") {
+        transitionToPage("/templates/bft");
+    }
+
+    if (assignDiploma() === "ifs") {
+        transitionToPage("/templates/ifs");
+    }
+
+    if (assignDiploma() === "it") {
+        transitionToPage("/templates/it");
+    }
+
+    if (assignDiploma() === "dsf") {
+        transitionToPage("/templates/dsf");
+    }
+}
+
+function calculateDiplomaFinal() {
+    // calcualate dsf part 1
+    let r_dsf = (r_riasec / 15);
+    let a_dsf = ((15 - a_riasec) / 15);
+    let e_dsf = ((15 - e_riasec) / 15);
+    let c_dsf = (c_riasec / 15);
+    let dsf_part_1 = (r_dsf + a_dsf + e_dsf + c_dsf) * 5
+
+    // calculate dcs part 1
+    let dcs_part_1 = ((r_riasec / 10) + ((15 - a_riasec) / 15) + (e_riasec / 10) + (c_riasec / 15)) * 5
+
+    // calculate dit part 1
+    let dit_part_1 = ((r_riasec / 15) + (a_riasec / 15) + (e_riasec / 10) + ((15 - c_riasec) / 15)) * 5
+
+    // calculate dbft part 1
+    let dbft_part_1 = (((15 - r_riasec) / 15) + (a_riasec / 15) + (e_riasec / 15) + (c_riasec / 10)) * 5
+
+    // calculate dba part 1 
+    let dba_part_1 = ((r_riasec / 10) + (a_riasec / 10) + (e_riasec / 15) + (c_riasec / 15)) * 5
+
+    calculateRIASEC();
+
+    console.log("dsf: ", dsf_part_1, '\n',
+        "dcs: ", dcs_part_1, '\n',
+        "dit: ", dit_part_1, '\n',
+        "dbft: ", dbft_part_1, '\n',
+        "dba: ", dba_part_1);
+
+    dsf_final = dsf + dsf_part_1;
+    dcs_final = ifs + dcs_part_1;
+    dit_final = it + dit_part_1;
+    dbft_final = bft + dbft_part_1;
+    dba_final = bia + dba_part_1;
+
+    console.log("dsf final: ", dsf_final, '\n',
+        "dcs final: ", dcs_final, '\n',
+        "dit final: ", dit_final, '\n',
+        "dbft final: ", dbft_final, '\n',
+        "dba final: ", dba_final);
+
+    assignDiploma();
+
+    if (qns_counter_one >= 5 || qns_counter_three >= 5 || qns_counter_five >= 5) {
+        console.log("Recommend CICT")
+    }
+}
+
 function calculateRIASEC() {
     // calcualate dsf part 1
     let r_dsf = (r_riasec / 15);
@@ -511,114 +620,6 @@ function calculateRIASEC() {
         "dit: ", dit_part_1, '\n',
         "dbft: ", dbft_part_1, '\n',
         "dba: ", dba_part_1);
-}
-
-// Redirecting webpage
-function submit() {
-    let range = document.getElementById("myRange").value; // setting var of user's answer
-
-    if ((+range) === 5) {
-        dsf += 5;
-        ifs += 4;
-        qns_counter_five += 1;
-    }
-    if ((+range) === 4) {
-        dsf += 4;
-        ifs += 4;
-    }
-    if ((+range) === 3) {
-        dsf += 3;
-        ifs += 3;
-        qns_counter_three += 1;
-    }
-    if ((+range) === 2) {
-        dsf += 2;
-        ifs += 2;
-    }
-    if ((+range) === 1) {
-        dsf += 1;
-        ifs += 1;
-        qns_counter_one += 1;
-    }
-
-    calculateDiplomaFinal();
-
-    window.transitionToPage = function(href) {
-        document.querySelector('body').style.opacity = 0
-        setTimeout(function() {
-            window.location.href = href
-        }, 500)
-    }
-
-    document.addEventListener('DOMContentLoaded', function(event) {
-        document.querySelector('body').style.opacity = 1
-    })
-
-    if (assignDiploma() === "bia") {
-        transitionToPage("/templates/bia");
-    }
-
-    if (assignDiploma() === "bft") {
-        transitionToPage("/templates/bft");
-    }
-
-    if (assignDiploma() === "ifs") {
-        transitionToPage("/templates/ifs");
-    }
-
-    if (assignDiploma() === "it") {
-        transitionToPage("/templates/it");
-    }
-
-    if (assignDiploma() === "dsf") {
-        transitionToPage("/templates/dsf");
-    }
-}
-
-function calculateDiplomaFinal() {
-    calculateRIASEC();
-    // calcualate dsf part 1
-    // let r_dsf = (r_riasec / 15);
-    // let a_dsf = ((15 - a_riasec) / 15);
-    // let e_dsf = ((15 - e_riasec) / 15);
-    // let c_dsf = (c_riasec / 15);
-    // let dsf_part_1 = (r_dsf + a_dsf + e_dsf + c_dsf) * 5
-
-    // // calculate dcs part 1
-    // let dcs_part_1 = ((r_riasec / 10) + ((15 - a_riasec) / 15) + (e_riasec / 10) + (c_riasec / 15)) * 5
-
-    // // calculate dit part 1
-    // let dit_part_1 = ((r_riasec / 15) + (a_riasec / 15) + (e_riasec / 10) + ((15 - c_riasec) / 15)) * 5
-
-    // // calculate dbft part 1
-    // let dbft_part_1 = (((15 - r_riasec) / 15) + (a_riasec / 15) + (e_riasec / 15) + (c_riasec / 10)) * 5
-
-    // // calculate dba part 1 
-    // let dba_part_1 = ((r_riasec / 10) + (a_riasec / 10) + (e_riasec / 15) + (c_riasec / 15)) * 5
-
-    console.log("dsf: ", dsf_part_1, '\n',
-        "dcs: ", dcs_part_1, '\n',
-        "dit: ", dit_part_1, '\n',
-        "dbft: ", dbft_part_1, '\n',
-        "dba: ", dba_part_1);
-
-    dsf_final = dsf + dsf_part_1;
-    dcs_final = ifs + dcs_part_1;
-    dit_final = it + dit_part_1;
-    dbft_final = bft + dbft_part_1;
-    dba_final = bia + dba_part_1;
-
-    console.log("dsf final: ", dsf_final, '\n',
-        "dcs final: ", dcs_final, '\n',
-        "dit final: ", dit_final, '\n',
-        "dbft final: ", dbft_final, '\n',
-        "dba final: ", dba_final);
-
-    assignDiploma();
-
-    if (qns_counter_one >= 5 || qns_counter_three >= 5 || qns_counter_five >= 5) {
-        console.log("Recommend CICT")
-    }
 }
 
 // Assigning scores based on diploma 
