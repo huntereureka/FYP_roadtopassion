@@ -234,17 +234,25 @@
     <button id="save" style="visibility: collapse;">Save as image</button></div>
 
     <script>
+        var inputName = "";
+
         function user_name() {
-            var inputName;
+            var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            var format_numbers = /\d/;
 
             do {
                 inputName = prompt("Enter your name: ")
+                inputName = inputName.toLowerCase()
                 if (inputName == "" || inputName == null) {
                     alert("String is empty")
-                } else if (inputName.toLowerCase() == "fuck") {
+                } else if (inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || inputName.toLowerCase() == "fuck you") {
                     alert("String contains vulgarities")
+                } else if (format_numbers.test(inputName)) {
+                    alert("String contains number")
+                } else if (format_symbols.test(inputName)) {
+                    alert("String contains symbols")
                 }
-            } while (inputName == "" || inputName == null || inputName.toLowerCase() == "fuck");
+            } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
 
             alert("Hello, " + inputName + "!");
 
@@ -254,52 +262,92 @@
             $('.popupCloseButton').click(function() {
                 $('.hover_bkgr_fricc').hide();
             });
+
+            draw_canvas();
         }
 
-        // needed to set max no. of stickers
-        var click_count = 0;
+        function draw_canvas() {
+            var display_name = inputName;
+            console.log(display_name);
 
-        // defining dimensions of container
-        var dimensions = screen.width;
-        var stage = new Konva.Stage({
-            container: 'container',
-            width: dimensions,
-            height: dimensions,
-        });
+            // needed to set max no. of stickers
+            var click_count = 0;
 
-        // creating container
-        var layer = new Konva.Layer();
-        stage.add(layer);
-
-        // defining background image
-        var imageObj = new Image();
-        var background = new Konva.Rect({
-            x: ((stage.width() - 360) / 2),
-            y: ((stage.height() - 360) / 2),
-            width: 360,
-            height: 360,
-            image: imageObj,
-            listening: false, // because we don't need any events on the background
-        });
-        layer.add(background);
-
-        // set fill pattern image
-        imageObj.onload = function() {
-            background.fillPatternImage(imageObj);
-        };
-        imageObj.src = '/static/images/dbft-3.png';
-
-        var fillPatternImage = background.fillPatternImage(); // get fill pattern image
-
-        // the stage is draggable
-        // that means absolute position of background may change
-        // so we need to reset it back to {0, 0}
-        stage.on('dragmove', () => {
-            background.absolutePosition({
-                x: 0,
-                y: 0
+            // defining dimensions of container
+            var dimensions = screen.width;
+            var stage = new Konva.Stage({
+                container: 'container',
+                width: dimensions,
+                height: dimensions,
             });
-        });
+
+            // creating container
+            var layer = new Konva.Layer();
+            stage.add(layer);
+
+            // defining background image
+            var imageObj = new Image();
+            var background = new Konva.Rect({
+                x: ((stage.width() - 360) / 2),
+                y: ((stage.height() - 360) / 2),
+                width: 360,
+                height: 360,
+                image: imageObj,
+                listening: false, // because we don't need any events on the background
+            });
+            layer.add(background);
+
+            // set fill pattern image
+            imageObj.onload = function() {
+                background.fillPatternImage(imageObj);
+            };
+            imageObj.src = '/static/images/dbft-3.png';
+
+            var fillPatternImage = background.fillPatternImage(); // get fill pattern image
+
+            // the stage is draggable
+            // that means absolute position of background may change
+            // so we need to reset it back to {0, 0}
+            stage.on('dragmove', () => {
+                background.absolutePosition({
+                    x: 0,
+                    y: 0
+                });
+            });
+
+            var tr = new Konva.Transformer();
+            layer.add(tr);
+
+            // clicks should select/deselect shapes
+            stage.on('click tap', function(e) {
+                // if click on empty area - remove all selections
+                if (e.target === stage) {
+                    tr.nodes([]);
+                    return;
+                }
+
+                // do we pressed shift or ctrl?
+                const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
+                const isSelected = tr.nodes().indexOf(e.target) >= 0;
+
+                if (!metaPressed && !isSelected) {
+                    // if no key pressed and the node is not selected
+                    // select just one
+                    tr.nodes([e.target]);
+                } else if (metaPressed && isSelected) {
+                    // if we pressed keys and node was selected
+                    // we need to remove it from selection:
+                    const nodes = tr.nodes().slice(); // use slice to have new copy of array
+                    // remove node from array
+                    nodes.splice(nodes.indexOf(e.target), 1);
+                    tr.nodes(nodes);
+                } else if (metaPressed && !isSelected) {
+                    // add the node into selection
+                    const nodes = tr.nodes().concat([e.target]);
+                    tr.nodes(nodes);
+                }
+            });
+        }
 
         // function from https://stackoverflow.com/a/15832662/512042
         function downloadURI(uri, name) {
@@ -353,39 +401,6 @@
                 });
             });
 
-        var tr = new Konva.Transformer();
-        layer.add(tr);
-
-        // clicks should select/deselect shapes
-        stage.on('click tap', function(e) {
-            // if click on empty area - remove all selections
-            if (e.target === stage) {
-                tr.nodes([]);
-                return;
-            }
-
-            // do we pressed shift or ctrl?
-            const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
-            const isSelected = tr.nodes().indexOf(e.target) >= 0;
-
-            if (!metaPressed && !isSelected) {
-                // if no key pressed and the node is not selected
-                // select just one
-                tr.nodes([e.target]);
-            } else if (metaPressed && isSelected) {
-                // if we pressed keys and node was selected
-                // we need to remove it from selection:
-                const nodes = tr.nodes().slice(); // use slice to have new copy of array
-                // remove node from array
-                nodes.splice(nodes.indexOf(e.target), 1);
-                tr.nodes(nodes);
-            } else if (metaPressed && !isSelected) {
-                // add the node into selection
-                const nodes = tr.nodes().concat([e.target]);
-                tr.nodes(nodes);
-            }
-        });
-
         function load_pic_test() {
             $(window).load(function() {
                 $(".trigger_popup_fricc").click(function() {
@@ -400,14 +415,14 @@
             });
         }
 
-        function load_desc() {
-            $('.hover_bkgr_fricc').click(function() {
-                $('.hover_bkgr_fricc').hide();
-            });
-            $('.popupCloseButton').click(function() {
-                $('.hover_bkgr_fricc').hide();
-            });
-        };
+        // function load_desc() {
+        //     $('.hover_bkgr_fricc').click(function() {
+        //         $('.hover_bkgr_fricc').hide();
+        //     });
+        //     $('.popupCloseButton').click(function() {
+        //         $('.hover_bkgr_fricc').hide();
+        //     });
+        // };
 
         // $(function () {
         //     // Bind the swipeHandler callback function to the swipe event on div.box

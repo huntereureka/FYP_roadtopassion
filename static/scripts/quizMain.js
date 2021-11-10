@@ -15,6 +15,11 @@ let dsf = 0;
 let ifs = 0;
 let it = 0;
 
+// Initalize IT recommendation counter
+var qns_counter_one = 0;
+var qns_counter_three = 0;
+var qns_counter_five = 0;
+
 // Questions PART 1: RIASEC
 // Questions_part1 = ["Program an application",
 // "Come up with creative ideas or draw",
@@ -36,9 +41,9 @@ let it = 0;
 //     "Ensuring that the staff are complying with the company rules"]
 
 // QUESTIONS USED 
-questions = ["Come up with creative ideas or draw",
+questions = ["Come up with creative solutions",
     "Lead a group to finish tasks",
-    "Organize a system",
+    "Organize or sort your items",
     "Simplify complex tasks",
     "Make a problem solving application",
     "Plan out a camping trip for secondary school students",
@@ -49,8 +54,7 @@ questions = ["Come up with creative ideas or draw",
     "Analyzing, cleaning and sorting data to make informed decisions",
     "Moderate a spreadsheet to determine business costs",
     "Programming a website that is easy to use",
-    "Developing a marketing plan for a new product on a limited budget",
-    "Ensuring that the staff are complying with the company rules"
+    "Investigate the aftermath of a cyberattack",
 ]
 
 function onNext() {
@@ -68,7 +72,7 @@ function onNext() {
     // console.log("Questions attempted: " + qns_counter); // output questions done
 
     // check if questions have been completed
-    if (qns_counter === 15) {
+    if (qns_counter === 14) {
         const submit = document.getElementById("submit");
         submit.style.visibility = "visible";
         const next = document.getElementById("next");
@@ -231,67 +235,81 @@ function onNext() {
         if ((+range) === 5) {
             dsf += 5;
             ifs += 4;
-            it += 2;
+            it += 3;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
             dsf += 4;
             ifs += 4;
-            it += 2;
+            it += 3;
         }
         if ((+range) === 3) {
             dsf += 3;
             ifs += 3;
-            it += 2;
+            it += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             dsf += 2;
             ifs += 2;
-            it += 1;
+            it += 2;
         }
         if ((+range) === 1) {
-            bft += 3;
-            bia += 3;
+            dsf += 1;
+            ifs += 1;
+            it += 1;
+            qns_counter_one += 1;
         }
     }
 
     if (qns_counter === 10) {
         if ((+range) === 5) {
-            ifs += 5;
+            ifs += 3;
             it += 5;
-            bia += 2;
+            bia += 3;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
-            ifs += 4;
+            ifs += 3;
             it += 4;
-            bia += 2;
+            bia += 3;
         }
         if ((+range) === 3) {
             ifs += 3;
             it += 3;
-            bia += 2;
+            bia += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             ifs += 2;
             it += 2;
             bia += 2;
         }
+        if ((+range) === 1) {
+            ifs += 1;
+            it += 1;
+            bia += 1;
+            qns_counter_one += 1;
+        }
     }
 
     if (qns_counter === 11) {
         if ((+range) === 5) {
-            it += 5;
+            it += 4;
             bft += 5;
-            bia += 3;
+            bia += 4;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
             it += 4;
             bft += 4;
-            bia += 3;
+            bia += 4;
         }
         if ((+range) === 3) {
             it += 3;
             bft += 3;
             bia += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             it += 2;
@@ -299,19 +317,22 @@ function onNext() {
             bia += 2;
         }
         if ((+range) === 1) {
-            dsf += 3;
-            ifs += 3;
+            it += 1;
+            bft += 1;
+            bia += 1;
+            qns_counter_one += 1;
         }
     }
 
     if (qns_counter === 12) {
         if ((+range) === 5) {
-            dsf += 3;
-            bft += 4;
-            bia += 5;
+            dsf += 5;
+            bft += 5;
+            bia += 4;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
-            dsf += 3;
+            dsf += 4;
             bft += 4;
             bia += 4;
         }
@@ -319,18 +340,26 @@ function onNext() {
             dsf += 3;
             bft += 3;
             bia += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             dsf += 2;
             bft += 2;
             bia += 2;
+        }
+        if ((+range) === 2) {
+            dsf += 1;
+            bft += 1;
+            bia += 1;
+            qns_counter_one += 1;
         }
     }
 
     if (qns_counter === 13) {
         if ((+range) === 5) {
             bft += 5;
-            bia += 5;
+            bia += 4;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
             bft += 4;
@@ -339,60 +368,47 @@ function onNext() {
         if ((+range) === 3) {
             bft += 3;
             bia += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             bft += 2;
             bia += 2;
         }
         if ((+range) === 1) {
-            dsf += 3;
-            ifs += 3;
+            bft += 1;
+            bia += 1;
+            qns_counter_one += 1;
         }
     }
 
     if (qns_counter === 14) {
         if ((+range) === 5) {
             it += 5;
-            bft += 3;
-            bia += 3;
+            dsf += 3;
+            ifs += 3;
+            qns_counter_five += 1;
         }
         if ((+range) === 4) {
             it += 4;
-            bft += 3;
-            bia += 3;
+            dsf += 3;
+            ifs += 3;
         }
         if ((+range) === 3) {
             it += 3;
-            bft += 3;
-            bia += 3;
+            dsf += 3;
+            ifs += 3;
+            qns_counter_three += 1;
         }
         if ((+range) === 2) {
             it += 2;
-            bft += 2;
-            bia += 2;
+            dsf += 2;
+            ifs += 2;
         }
-    }
-
-    if (qns_counter === 15) {
-        if ((+range) === 5) {
-            it += 5;
-            bft += 5;
-            bia += 2;
-        }
-        if ((+range) === 4) {
-            it += 4;
-            bft += 4;
-            bia += 2;
-        }
-        if ((+range) === 3) {
-            it += 3;
-            bft += 3;
-            bia += 2;
-        }
-        if ((+range) === 2) {
-            it += 2;
-            bft += 2;
-            bia += 2;
+        if ((+range) === 1) {
+            it += 1;
+            dsf += 1;
+            ifs += 1;
+            qns_counter_one += 1;
         }
     }
 }
@@ -504,6 +520,7 @@ function submit() {
     if ((+range) === 5) {
         dsf += 5;
         ifs += 4;
+        qns_counter_five += 1;
     }
     if ((+range) === 4) {
         dsf += 4;
@@ -512,10 +529,16 @@ function submit() {
     if ((+range) === 3) {
         dsf += 3;
         ifs += 3;
+        qns_counter_three += 1;
     }
     if ((+range) === 2) {
         dsf += 2;
         ifs += 2;
+    }
+    if ((+range) === 1) {
+        dsf += 1;
+        ifs += 1;
+        qns_counter_one += 1;
     }
 
     calculateDiplomaFinal();
@@ -553,24 +576,25 @@ function submit() {
 }
 
 function calculateDiplomaFinal() {
+    calculateRIASEC();
     // calcualate dsf part 1
-    let r_dsf = (r_riasec / 15);
-    let a_dsf = ((15 - a_riasec) / 15);
-    let e_dsf = ((15 - e_riasec) / 15);
-    let c_dsf = (c_riasec / 15);
-    let dsf_part_1 = (r_dsf + a_dsf + e_dsf + c_dsf) * 5
+    // let r_dsf = (r_riasec / 15);
+    // let a_dsf = ((15 - a_riasec) / 15);
+    // let e_dsf = ((15 - e_riasec) / 15);
+    // let c_dsf = (c_riasec / 15);
+    // let dsf_part_1 = (r_dsf + a_dsf + e_dsf + c_dsf) * 5
 
-    // calculate dcs part 1
-    let dcs_part_1 = ((r_riasec / 10) + ((15 - a_riasec) / 15) + (e_riasec / 10) + (c_riasec / 15)) * 5
+    // // calculate dcs part 1
+    // let dcs_part_1 = ((r_riasec / 10) + ((15 - a_riasec) / 15) + (e_riasec / 10) + (c_riasec / 15)) * 5
 
-    // calculate dit part 1
-    let dit_part_1 = ((r_riasec / 15) + (a_riasec / 15) + (e_riasec / 13) + ((15 - c_riasec) / 15)) * 5
+    // // calculate dit part 1
+    // let dit_part_1 = ((r_riasec / 15) + (a_riasec / 15) + (e_riasec / 10) + ((15 - c_riasec) / 15)) * 5
 
-    // calculate dbft part 1
-    let dbft_part_1 = (((15 - r_riasec) / 15) + (a_riasec / 15) + (e_riasec / 15) + (c_riasec / 10)) * 5
+    // // calculate dbft part 1
+    // let dbft_part_1 = (((15 - r_riasec) / 15) + (a_riasec / 15) + (e_riasec / 15) + (c_riasec / 10)) * 5
 
-    // calculate dba part 1 
-    let dba_part_1 = ((r_riasec / 10) + (a_riasec / 10) + (e_riasec / 15) + (c_riasec / 15)) * 5
+    // // calculate dba part 1 
+    // let dba_part_1 = ((r_riasec / 10) + (a_riasec / 10) + (e_riasec / 15) + (c_riasec / 15)) * 5
 
     console.log("dsf: ", dsf_part_1, '\n',
         "dcs: ", dcs_part_1, '\n',
@@ -591,6 +615,10 @@ function calculateDiplomaFinal() {
         "dba final: ", dba_final);
 
     assignDiploma();
+
+    if (qns_counter_one >= 5 || qns_counter_three >= 5 || qns_counter_five >= 5) {
+        console.log("Recommend CICT")
+    }
 }
 
 // Assigning scores based on diploma 
