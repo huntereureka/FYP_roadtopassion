@@ -298,9 +298,6 @@
             // shape offset to the center of the text shape after instantiating it
             simpleText.offsetX(simpleText.width() / 2);
 
-            // add the shapes to the layer
-            layer.add(simpleText);
-
             // defining background image
             var imageObj = new Image();
             var background = new Konva.Rect({ 
@@ -330,7 +327,9 @@
                     y: 0
                 });
             });
-
+            
+            // add the shapes to the layer
+            layer.add(simpleText);
             var tr = new Konva.Transformer();
             layer.add(tr);
             stage.add(layer);
