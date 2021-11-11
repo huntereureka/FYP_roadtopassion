@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Scripts -->
     <script src="https://unpkg.com/konva@8.2.1/konva.min.js"></script>
@@ -23,17 +22,17 @@
             padding: 0;
             background-color: #1ec5aa;
         }
-
+        
         #buttons>input {
             padding: 10px;
             display: block;
             margin-top: 5px;
         }
-
+        
         #drag-items img {
             height: 65px;
         }
-
+        
         .outer {
             width: 100%;
             height: 100%;
@@ -43,7 +42,7 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
         }
-
+        
         .outer div {
             width: 24.5%;
             background-color: #eee;
@@ -53,7 +52,7 @@
             display: inline-block;
             zoom: 1;
         }
-
+        
         div.scroll {
             margin: 4px, 4px;
             padding: 4px;
@@ -62,13 +61,12 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-
+        
         img {
             padding: 5px;
         }
-
         /* Popup box BEGIN */
-
+        
         .hover_bkgr_fricc {
             background: rgba(0, 0, 0, .4);
             cursor: pointer;
@@ -79,13 +77,13 @@
             width: 100%;
             z-index: 10000;
         }
-
+        
         .hover_bkgr_fricc .helper {
             display: inline-block;
             height: 100%;
             vertical-align: middle;
         }
-
+        
         .hover_bkgr_fricc>div {
             background-color: #fff;
             box-shadow: 10px 10px 60px #555;
@@ -99,7 +97,7 @@
             border-radius: 8px;
             padding: 15px 5%;
         }
-
+        
         .popupCloseButton {
             background-color: #fff;
             border: 3px solid #999;
@@ -117,11 +115,11 @@
             height: 30px;
             text-align: center;
         }
-
+        
         .popupCloseButton:hover {
             background-color: #ccc;
         }
-
+        
         .trigger_popup_fricc {
             cursor: pointer;
             font-size: 20px;
@@ -129,10 +127,9 @@
             display: inline-block;
             font-weight: bold;
         }
-
         /* Popup box END */
         /* Popup box BEGIN */
-
+        
         .hover_bkgr_fricc1 {
             background: rgba(0, 0, 0, .4);
             cursor: pointer;
@@ -144,13 +141,13 @@
             width: 100%;
             z-index: 10000;
         }
-
+        
         .hover_bkgr_fricc1 .helper {
             display: inline-block;
             height: 100%;
             vertical-align: middle;
         }
-
+        
         .hover_bkgr_fricc1>div {
             background-color: #fff;
             box-shadow: 10px 10px 60px #555;
@@ -164,7 +161,7 @@
             border-radius: 8px;
             padding: 15px 5%;
         }
-
+        
         .popupCloseButton1 {
             background-color: #fff;
             border: 3px solid #999;
@@ -182,11 +179,11 @@
             height: 30px;
             text-align: center;
         }
-
+        
         .popupCloseButton1:hover {
             background-color: #ccc;
         }
-
+        
         .trigger_popup_fricc1 {
             cursor: pointer;
             font-size: 20px;
@@ -203,13 +200,11 @@
         <span class="helper"></span>
         <div>
             <div class="popupCloseButton">&times;</div>
-            <p>1) Add your name in the bottom right. <br /> 2) Select, add, and resize stickers to your liking. <br />
-                3) Swipe up to add your tile to the mural!</p>
+            <p>1) Add your name in the bottom right. <br /> 2) Select, add, and resize stickers to your liking. <br /> 3) Swipe up to add your tile to the mural!</p>
         </div>
     </div>
 
-    <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to
-        PASSION
+    <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to PASSION
     </div>
     <!-- <div id="container" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()"></div> -->
     <div id="container"></div>
@@ -263,10 +258,10 @@
 
             alert("Hello, " + inputName + "!");
 
-            $('.hover_bkgr_fricc').click(function () {
+            $('.hover_bkgr_fricc').click(function() {
                 $('.hover_bkgr_fricc').hide();
             });
-            $('.popupCloseButton').click(function () {
+            $('.popupCloseButton').click(function() {
                 $('.hover_bkgr_fricc').hide();
             });
 
@@ -293,7 +288,7 @@
             // stage.add(layer); IMPORTANT
 
             var simpleText = new Konva.Text({
-                x: stage.width() / 2,
+                x: 0,
                 y: 15,
                 text: inputName,
                 fontSize: 30,
@@ -303,7 +298,7 @@
 
             // to align text in the middle of the screen, we can set the
             // shape offset to the center of the text shape after instantiating it
-            simpleText.offsetX(simpleText.width() / 2);
+            // simpleText.offsetX(simpleText.width() / 2);
 
             // defining background image
             var imageObj = new Image();
@@ -318,7 +313,7 @@
             layer.add(background);
 
             // set fill pattern image
-            imageObj.onload = function () {
+            imageObj.onload = function() {
                 background.fillPatternImage(imageObj);
             };
             imageObj.src = '/static/images/dbft-3.png';
@@ -342,7 +337,7 @@
             stage.add(layer);
 
             // clicks should select/deselect shapes
-            stage.on('click tap', function (e) {
+            stage.on('click tap', function(e) {
                 // if click on empty area - remove all selections
                 if (e.target === stage) {
                     tr.nodes([]);
@@ -375,19 +370,19 @@
             var itemURL = '';
             document
                 .getElementById('drag-items')
-                .addEventListener('click', function (e) {
+                .addEventListener('click', function(e) {
                     stage.setPointersPositions(e);
                     itemURL = e.target.src;
-                    Konva.Image.fromURL(itemURL, function (image1) {
+                    Konva.Image.fromURL(itemURL, function(image1) {
                         if (click_count === 8) {
-                            $(window).load(function () {
-                                $(".trigger_popup_fricc").click(function () {
+                            $(window).load(function() {
+                                $(".trigger_popup_fricc").click(function() {
                                     $('.hover_bkgr_fricc').show();
                                 });
-                                $('.hover_bkgr_fricc').click(function () {
+                                $('.hover_bkgr_fricc').click(function() {
                                     $('.hover_bkgr_fricc').hide();
                                 });
-                                $('.popupCloseButton').click(function () {
+                                $('.popupCloseButton').click(function() {
                                     $('.hover_bkgr_fricc').hide();
                                 });
                             });
