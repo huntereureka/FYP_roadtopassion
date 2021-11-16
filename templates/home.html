@@ -12,6 +12,8 @@
     <title>Road to PASSION</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.9.0.min.js"></script>
 </head>
 
 <body>
@@ -33,6 +35,45 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            const s3 = new AWS.S3({
+                accessKeyId: "AKIARZFVAVYWKZXHGKN4",
+                secretAccessKey: "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",
+                region: "us-east-2"
+            })
+
+            function uploadImage() {
+                var params = {
+                    Bucket: 'fypj2022',
+                    Key: 'mykey',
+                    Body: 'HelloWorld'
+                };
+
+                s3.putObject(params, function(err, res) {
+                    if (err) {
+                        console.log("ERROR: ", err);
+                    } else {
+                        console.log("Successfully uploaded data to" + params.Bucket);
+                    }
+                });
+
+                // var param2 = {
+                //     Bucket: "fypj2022",
+                //     Prefix: "tile_images"
+                // }
+                // s3.listObjects(param2, function(err, data) {
+                //     if (err) {
+                //         throw err;
+                //     }
+                //     console.log(data);
+                // });
+            }
+
+            //S3Authentication();
+            uploadImage();
+            //setTimeout(uploadImage, 3000)
+        </script>
 </body>
 
 </html>

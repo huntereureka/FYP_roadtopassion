@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.9.0.min.js"></script>
 
     <title>Road to PASSION - Tile customisation</title>
     <style>
@@ -233,10 +234,32 @@
         <img src="/static/icons/vr.png" />
 
     </div>
-    <button id="save" style="visibility: collapse;">Save as image</button></div>
+    <button id="save" onclick="uploadImage()">Save as image</button></div>
 
     <script>
         var inputName = "";
+
+        function uploadImage() {
+            const s3 = new AWS.S3({ // load credentials for s3
+                accessKeyId: "AKIARZFVAVYWKZXHGKN4",
+                secretAccessKey: "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",
+                region: "us-east-2"
+            })
+
+            var params = {
+                Bucket: 'fypj2022',
+                Key: 'mykey.txt',
+                Body: 'HelloWorld'
+            };
+
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to" + params.Bucket);
+                }
+            });
+        }
 
         function user_name() {
             var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
