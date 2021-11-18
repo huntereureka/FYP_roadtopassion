@@ -111,9 +111,9 @@ function LimitValue(value, max)
 function GetDiplomaScoreRAEC(user_score, dip_max)
 {
   if (dip_max==0) {
-    return parseInt((15-user_score)/15)
+    return (15-user_score)/15
   }
-  return parseInt(user_score/dip_max);
+  return user_score/dip_max;
 }
 
 function AddCount(range)
@@ -143,6 +143,9 @@ function CalculateDiplomaScore()
     for (j=0;j<4;j++) {
       user_diploma_score[i]+=GetDiplomaScoreRAEC(user_raec_score[j],diploma_raec_max_arr[i][j]);
     }
+  }
+  for (i=0;i<DIPLOMA_NUM;i++) {
+    user_diploma_score[i]=parseInt(user_diploma_score[i]);
   }
   //Last part
   for (i=PART_ONE_QN_NUM;i<MAX_QN_NUM;i++) {
@@ -217,6 +220,7 @@ function AssignDiploma() {
 
 function GetFinalResults() //final
 {
+  var to_diploma_page;
   slider_bar_score[current_qn]=slider_bar.value; //calculate last quesiton
   CalculateDiplomaScore();
   window.transitionToPage=function(href)
@@ -228,11 +232,10 @@ function GetFinalResults() //final
       document.querySelector('body').style.opacity = 1;
   });
   const assigned_diploma=AssignDiploma();
-  //console.log(AssignDiploma());
   if (assigned_diploma!=-1) {
-    const to_diploma_page="/templates/"+assigned_diploma;
+    to_diploma_page="/templates/"+assigned_diploma;
   } else {
-    const to_diploma_page="/templates/404";
+    to_diploma_page="/templates/404";
   }
   transitionToPage(to_diploma_page);
 }
