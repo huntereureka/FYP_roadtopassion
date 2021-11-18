@@ -217,6 +217,7 @@ function AssignDiploma() {
 
 function GetFinalResults() //final
 {
+  var to_diploma_page;
   slider_bar_score[current_qn]=slider_bar.value; //calculate last quesiton
   CalculateDiplomaScore();
   window.transitionToPage=function(href)
@@ -230,10 +231,11 @@ function GetFinalResults() //final
   const assigned_diploma=AssignDiploma();
   //console.log(AssignDiploma());
   if (assigned_diploma!=-1) {
-    const to_diploma_page="/templates/"+assigned_diploma;
+    to_diploma_page="/templates/"+assigned_diploma;
   } else {
-    const to_diploma_page="/templates/404";
+    to_diploma_page="/templates/404";
   }
+  console.log(to_diploma_page);
   transitionToPage(to_diploma_page);
 }
 
