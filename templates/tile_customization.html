@@ -239,6 +239,30 @@
     <script>
         var inputName = "";
 
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function generateTile() {
+            randomInt = (getRandomInt(4)) + 1;
+
+            if (randomInt === 1) {
+                console.log("Integer is 1")
+            }
+
+            if (randomInt === 2) {
+                console.log("Integer is 2")
+            }
+
+            if (randomInt === 3) {
+                console.log("Integer is 3")
+            }
+
+            if (randomInt === 4) {
+                console.log("Integer is 4")
+            }
+        }
+
         // upload to s3 bucket a
         function uploadImage() {
             const s3 = new AWS.S3({ // load credentials for s3
@@ -505,6 +529,7 @@
         //         alert('swipe up detected');
         //     }
         // }
+        generateTile();
     </script>
 </body>
 
