@@ -342,29 +342,27 @@
             imageObj.onload = function() {
                 background.fillPatternImage(imageObj);
             };
-            // imageObj.src = test; // SET IMAGE BACKGROUND
 
             randomInt = (getRandomInt(4)) + 1;
-            var test = '';
 
             if (randomInt === 1) {
                 console.log("output is 1");
-                imageObj.src = '/static/images/dbft-1.png';
+                imageObj.src = '/static/tiles/dbft/dbft-1.png';
             }
 
             if (randomInt === 2) {
                 console.log("output is 2");
-                imageObj.src = '/static/images/dbft-2.png';
+                imageObj.src = '/static/tiles/dbft/dbft-2.png';
             }
 
             if (randomInt === 3) {
                 console.log("output is 3");
-                imageObj.src = '/static/images/dbft-3.png';
+                imageObj.src = '/static/tiles/dbft/dbft-3';
             }
 
             if (randomInt === 4) {
                 console.log("output is 4");
-                imageObj.src = '/static/images/dbft-4.png';
+                imageObj.src = '/static/tiles/dbft/dbft-4.png';
             }
 
             var fillPatternImage = background.fillPatternImage(); // get fill pattern image
