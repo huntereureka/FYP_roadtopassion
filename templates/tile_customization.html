@@ -268,8 +268,6 @@
             $('.popupCloseButton').click(function() {
                 $('.hover_bkgr_fricc').hide();
             });
-
-            draw_canvas();
         }
 
         var display_name = inputName;
@@ -454,6 +452,16 @@
             downloadURI(dataURL, 'stage.png');
         }
 
+        function downloadURI(uri, name) {
+            var link = document.createElement('a');
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+
         user_name();
     </script>
 </body>
@@ -474,15 +482,6 @@
         // );
 
         // function from https://stackoverflow.com/a/15832662/512042
-        // function downloadURI(uri, name) {
-        //     var link = document.createElement('a');
-        //     link.download = name;
-        //     link.href = uri;
-        //     document.body.appendChild(link);
-        //     link.click();
-        //     document.body.removeChild(link);
-        //     delete link;
-        // }
 
         // function load_pic_test() {
         //     $(window).load(function() {
