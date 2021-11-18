@@ -195,7 +195,7 @@
     </style>
 </head>
 
-<body onload="user_name()" style="overflow: hidden;">
+<body style="overflow: hidden;">
 
     <div class="hover_bkgr_fricc">
         <span class="helper"></span>
@@ -429,24 +429,24 @@
                 region: "us-east-2"
             })
 
-            var params = {
-                Bucket: 'fypj2022',
-                Key: 'test_tile.jpg',
-                Body: 'HelloWorld'
-            };
-
-            // s3.putObject(params, function(err, res) {
-            //     if (err) {
-            //         console.log("ERROR: ", err);
-            //     } else {
-            //         console.log("Successfully uploaded data to" + params.Bucket);
-            //     }
-            // });
-
             var dataURL = stage.toDataURL({
                 pixelRatio: 3
             });
-            downloadURI(dataURL, 'stage.png');
+            // downloadURI(dataURL, 'stage.png');
+
+            var params = {
+                Bucket: 'fypj2022',
+                Key: 'test_tile.jpg',
+                Body: dataURL
+            };
+
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to" + params.Bucket);
+                }
+            });
         }
 
         function downloadURI(uri, name) {
