@@ -254,18 +254,35 @@
 
             var params = {
                 Bucket: 'fypj2022',
-                Key: 'mykey.txt',
+                Key: 'test_tile.jpg',
                 Body: 'HelloWorld'
             };
 
-            s3.putObject(params, function(err, res) {
-                if (err) {
-                    console.log("ERROR: ", err);
-                } else {
-                    console.log("Successfully uploaded data to" + params.Bucket);
-                }
+            // s3.putObject(params, function(err, res) {
+            //     if (err) {
+            //         console.log("ERROR: ", err);
+            //     } else {
+            //         console.log("Successfully uploaded data to" + params.Bucket);
+            //     }
+            // });
+
+            var dataURL = stage.toDataURL({
+                pixelRatio: 3
             });
+            downloadURI(dataURL, 'stage.png');
         }
+
+        document.getElementById('save').addEventListener(
+            'click',
+            function() {
+                tr.nodes([]);
+                var dataURL = stage.toDataURL({
+                    pixelRatio: 3
+                });
+                downloadURI(dataURL, 'stage.png');
+            },
+            false
+        );
 
         function user_name() {
             var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -346,22 +363,22 @@
             randomInt = (getRandomInt(4)) + 1;
 
             if (randomInt === 1) {
-                console.log("output is 1");
+                // console.log("output is 1");
                 imageObj.src = '/static/tiles/dbft/dbft-1.png';
             }
 
             if (randomInt === 2) {
-                console.log("output is 2");
+                // console.log("output is 2");
                 imageObj.src = '/static/tiles/dbft/dbft-2.png';
             }
 
             if (randomInt === 3) {
-                console.log("output is 3");
+                // console.log("output is 3");
                 imageObj.src = '/static/tiles/dbft/dbft-3.png';
             }
 
             if (randomInt === 4) {
-                console.log("output is 4");
+                // console.log("output is 4");
                 imageObj.src = '/static/tiles/dbft/dbft-4.png';
             }
 
@@ -465,18 +482,6 @@
         //     document.body.removeChild(link);
         //     delete link;
         // }
-
-        // document.getElementById('save').addEventListener(
-        //     'click',
-        //     function() {
-        //         tr.nodes([]);
-        //         var dataURL = stage.toDataURL({
-        //             pixelRatio: 3
-        //         });
-        //         downloadURI(dataURL, 'stage.png');
-        //     },
-        //     false
-        // );
 
         // function load_pic_test() {
         //     $(window).load(function() {
