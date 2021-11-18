@@ -239,36 +239,33 @@
     <script>
         var inputName = "";
         var randomInt = "";
+        var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        var format_numbers = /\d/;
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
 
-        function user_name() {
-            var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-            var format_numbers = /\d/;
+        do {
+            inputName = prompt("Enter your name: ")
+            inputName = inputName.toLowerCase()
+            if (inputName == "" || inputName == null) {
+                alert("String is empty")
+            } else if (inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || inputName.toLowerCase() == "fuck you") {
+                alert("String contains vulgarities")
+            } else if (format_numbers.test(inputName)) {
+                alert("String contains number")
+            } else if (format_symbols.test(inputName)) {
+                alert("String contains symbols")
+            }
+        } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
 
-            do {
-                inputName = prompt("Enter your name: ")
-                inputName = inputName.toLowerCase()
-                if (inputName == "" || inputName == null) {
-                    alert("String is empty")
-                } else if (inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || inputName.toLowerCase() == "fuck you") {
-                    alert("String contains vulgarities")
-                } else if (format_numbers.test(inputName)) {
-                    alert("String contains number")
-                } else if (format_symbols.test(inputName)) {
-                    alert("String contains symbols")
-                }
-            } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
-
-            $('.hover_bkgr_fricc').click(function() {
-                $('.hover_bkgr_fricc').hide();
-            });
-            $('.popupCloseButton').click(function() {
-                $('.hover_bkgr_fricc').hide();
-            });
-        }
+        $('.hover_bkgr_fricc').click(function() {
+            $('.hover_bkgr_fricc').hide();
+        });
+        $('.popupCloseButton').click(function() {
+            $('.hover_bkgr_fricc').hide();
+        });
 
         var display_name = inputName;
 
