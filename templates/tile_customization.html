@@ -343,23 +343,28 @@
                 background.fillPatternImage(imageObj);
             };
             imageObj.src = '/static/images/dbft-3.png'; // SET IMAGE BACKGROUND
-            // randomInt = (getRandomInt(4)) + 1;
 
-            // if (randomInt === 1) {
-            //     imageObj.src = '/static/images/dbft-1.png';
-            // }
+            randomInt = (getRandomInt(4)) + 1;
 
-            // if (randomInt === 2) {
-            //     imageObj.src = '/static/images/dbft-2.png';
-            // }
+            if (randomInt === 1) {
+                console.log("output is 1");
+                imageObj.src = '/static/images/dbft-1.png';
+            }
 
-            // if (randomInt === 3) {
-            //     imageObj.src = '/static/images/dbft-3.png';
-            // }
+            if (randomInt === 2) {
+                console.log("output is 2");
+                imageObj.src = '/static/images/dbft-2.png';
+            }
 
-            // if (randomInt === 4) {
-            //     imageObj.src = '/static/images/dbft-4.png';
-            // }
+            if (randomInt === 3) {
+                console.log("output is 3");
+                imageObj.src = '/static/images/dbft-3.png';
+            }
+
+            if (randomInt === 4) {
+                console.log("output is 4");
+                imageObj.src = '/static/images/dbft-4.png';
+            }
 
             var fillPatternImage = background.fillPatternImage(); // get fill pattern image
 
