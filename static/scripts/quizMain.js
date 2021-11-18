@@ -145,7 +145,7 @@ function CalculateDiplomaScore()
     }
   }
   for (i=0;i<DIPLOMA_NUM;i++) {
-    user_diploma_score[i]=parseInt(user_diploma_score[i]);
+    user_diploma_score[i]=parseInt(user_diploma_score[i]*5);
   }
   //Last part
   for (i=PART_ONE_QN_NUM;i<MAX_QN_NUM;i++) {
