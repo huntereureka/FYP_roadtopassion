@@ -272,18 +272,6 @@
             downloadURI(dataURL, 'stage.png');
         }
 
-        document.getElementById('save').addEventListener(
-            'click',
-            function() {
-                tr.nodes([]);
-                var dataURL = stage.toDataURL({
-                    pixelRatio: 3
-                });
-                downloadURI(dataURL, 'stage.png');
-            },
-            false
-        );
-
         function user_name() {
             var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
             var format_numbers = /\d/;
@@ -466,13 +454,27 @@
                 layer.draw();
             });
         }
+
+        user_name();
     </script>
 </body>
 
 </html>
 
 <!-- 
-            // function from https://stackoverflow.com/a/15832662/512042
+        // document.getElementById('save').addEventListener(
+        //     'click',
+        //     function() {
+        //         tr.nodes([]);
+        //         var dataURL = stage.toDataURL({
+        //             pixelRatio: 3
+        //         });
+        //         downloadURI(dataURL, 'stage.png');
+        //     },
+        //     false
+        // );
+
+        // function from https://stackoverflow.com/a/15832662/512042
         // function downloadURI(uri, name) {
         //     var link = document.createElement('a');
         //     link.download = name;
