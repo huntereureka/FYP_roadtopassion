@@ -438,17 +438,27 @@
 
             var params = {
                 Bucket: 'fypj2022',
-                Key: 'test_tile.png',
-                Body: dataURL
+                // Key: 'test_tile.png',
+                // Body: dataURL
             };
 
-            s3.putObject(params, function(err, res) {
-                if (err) {
-                    console.log("ERROR: ", err);
-                } else {
-                    console.log("Successfully uploaded data to " + params.Bucket);
-                }
-            });
+            // s3.putObject(params, function(err, res) {
+            //     if (err) {
+            //         console.log("ERROR: ", err);
+            //     } else {
+            //         console.log("Successfully uploaded data to " + params.Bucket);
+            //     }
+            // });
+
+            s3.upload({
+                ACL: 'public-read', 
+                Body: fs.createReadStream(dataURL), 
+                // file upload by below name
+                Key: 'aws_test.png',
+                ContentType: 'application/octet-stream' // force download if it's accessed as a top location
+                }, (err, response) => {
+            console.log(err, response)
+            })
         }
 
         // function downloadURI(uri) {
