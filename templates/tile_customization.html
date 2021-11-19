@@ -429,15 +429,17 @@
                 region: "us-east-2"
             })
 
-            var dataURL = stage.toDataURL({
-                pixelRatio: 3
-            });
+            var dataURL = stage.toDataURL('image/jpg', 1.0);
+
+            // var dataURL = stage.toDataURL({
+            //     pixelRatio: 3
+            // });
             // downloadURI(dataURL, 'stage.png');
 
             var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.jpg',
-                Body: stage
+                Body: dataURL
             };
 
             s3.putObject(params, function(err, res) {
