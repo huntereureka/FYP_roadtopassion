@@ -241,6 +241,7 @@
         var randomInt = "";
         var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         var format_numbers = /\d/;
+        var canvas = document.getElementById('container');
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
@@ -429,7 +430,7 @@
                 region: "us-east-2"
             })
 
-            var dataURL = stage.toDataURL('image/jpg', 1.0);
+            var dataURL = canvas.toDataURL('image/jpeg', 1.0);
 
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
