@@ -451,7 +451,8 @@
             //         console.log("Successfully uploaded data to " + params.Bucket);
             //     }
             // });
-            var upload = s3.ManagedUpload({
+            
+            var upload = new AWS.S3.ManagedUpload({
             params: {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
