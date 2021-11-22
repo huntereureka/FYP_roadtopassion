@@ -439,9 +439,9 @@
             })
 
             var dataURL = stage.toDataURL();
-            // console.log("dataURL: " + dataURL);
+            console.log("dataURL: " + dataURL);
             var encoded_dataURL = encodeURIComponent(dataURL);
-            // console.log("encoded dataURL: " + encoded_dataURL);
+            console.log("b64 data: " + encoded_dataURL);
 
             // let image_url = new Blob([dataURL], {
             //     type: 'text/plain'
@@ -501,12 +501,12 @@
 
             const contentType = 'image/png';
             const b64Data = encoded_dataURL;
-            const blob = b64toBlob(b64Data, contentType);
-            const blobUrl = URL.createObjectURL(blob);
-            const img = document.createElement('img');
-            img.src = blobUrl;
-            console.log("b64 data: " + b64Data)
-            console.log("img data: " + img);
+            // const blob = b64toBlob(b64Data, contentType);
+            // const blobUrl = URL.createObjectURL(blob);
+            // const img = document.createElement('img');
+            // img.src = blobUrl;
+            // console.log("b64 data: " + b64Data)
+            // console.log("img data: " + img);
 
             // var upload = new AWS.S3.ManagedUpload({
             // params: {
