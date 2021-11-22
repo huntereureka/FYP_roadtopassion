@@ -422,6 +422,9 @@
             layer.draw();
         });
 
+        function encode_utf8(s) {
+            return unescape(encodeURIComponent(s))
+        }
 
         // upload to s3 bucket a
         function uploadImage() {
@@ -431,7 +434,7 @@
                 region: "us-east-2"
             })
 
-            // var dataURL = stage.toDataURL();
+            var dataURL = stage.toDataURL();
 
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
@@ -441,7 +444,7 @@
             var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
-                Body: stage
+                Body: encode_utf8(dataURL)
             };
 
             s3.putObject(params, function(err, res) {
@@ -453,23 +456,23 @@
             });
 
             // var upload = new AWS.S3.ManagedUpload({
-            //     params: {
-            //         Bucket: 'fypj2022',
-            //         Key: 'test_tile.png',
-            //         Body: dataURL
-            //     }
+            // params: {
+            //     Bucket: 'fypj2022',
+            //     Key: 'test_tile.png',
+            //     Body: dataURL
+            // }
             // });
 
             // var promise = upload.promise();
 
-            // promise.then(
-            //     function(data) {
-            //         console.log("Successfully uploaded photo.");
-            //     },
-            //     function(err) {
-            //         console.log("There was an error uploading your photo: ", err.message);
-            //     }
-            // );
+            promise.then(
+                function(data) {
+                    console.log("Successfully uploaded photo.");
+                },
+                function(err) {
+                    console.log("There was an error uploading your photo: ", err.message);
+                }
+            );
         }
 
         // function downloadURI(uri) {
