@@ -243,6 +243,7 @@
         var randomInt = "";
         var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         var format_numbers = /\d/;
+        var tile_name = "";
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
@@ -321,21 +322,25 @@
         if (randomInt === 1) {
             // console.log("output is 1");
             imageObj.src = '/static/tiles/dbft/dbft-1.png';
+            tile_name = "asdsadasd_3_1";
         }
 
         if (randomInt === 2) {
             // console.log("output is 2");
             imageObj.src = '/static/tiles/dbft/dbft-2.png';
+            tile_name = "asdsadasd_3_2";
         }
 
         if (randomInt === 3) {
             // console.log("output is 3");
             imageObj.src = '/static/tiles/dbft/dbft-3.png';
+            tile_name = "asdsadasd_3_3";
         }
 
         if (randomInt === 4) {
             // console.log("output is 4");
             imageObj.src = '/static/tiles/dbft/dbft-4.png';
+            tile_name = "asdsadasd_3_4";
         }
 
         var fillPatternImage = background.fillPatternImage(); // get fill pattern image
@@ -422,12 +427,18 @@
             layer.draw();
         });
 
-        function encode_utf8(s) {
-            return unescape(encodeURIComponent(s))
-        }
-
-        function decode_utf8(s) {
-            return decodeURIComponent(escape(s));
+        function dataURLtoFile(dataurl, filename) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, {
+                type: mime
+            });
         }
 
         // upload to s3 bucket a
@@ -438,10 +449,35 @@
                 region: "us-east-2"
             })
 
-            var dataURL = stage.toDataURL();
-            console.log("dataURL: " + dataURL);
-            var encoded_dataURL = encodeURIComponent(dataURL);
-            console.log("b64 data: " + encoded_dataURL);
+            var b64text = encodeURIComponent(dataURL);
+            var file = dataURLtoFile(b64text, 'a.png');
+
+            var params = {
+                Bucket: 'fypj2022',
+                Key: tile_name,
+                Body: file
+            };
+
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to " + params.Bucket);
+                }
+            });
+
+            // function encode_utf8(s) {
+            //     return unescape(encodeURIComponent(s))
+            // }
+
+            // function decode_utf8(s) {
+            //     return decodeURIComponent(escape(s));
+            // }
+
+            // var dataURL = stage.toDataURL();
+            // console.log("dataURL: " + dataURL);
+            // var encoded_dataURL = encodeURIComponent(dataURL);
+            // console.log("b64 data: " + encoded_dataURL);
 
             // let image_url = new Blob([dataURL], {
             //     type: 'text/plain'
@@ -458,49 +494,35 @@
             //     delete link;
             // }
 
-            var dataURL = stage.toDataURL({
-                pixelRatio: 3
-            });
+            // var dataURL = stage.toDataURL({
+            //     pixelRatio: 3
+            // });
             // const test = downloadURI(dataURL, 'stage.png');
 
-            // var params = {
-            //     Bucket: 'fypj2022',
-            //     Key: 'stage.png',
-            //     Body: downloadURI(dataURL)
-            // };
+            // const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
+            //     const byteCharacters = atob(b64Data);
+            //     const byteArrays = [];
 
-            // s3.putObject(params, function(err, res) {
-            //     if (err) {
-            //         console.log("ERROR: ", err);
-            //     } else {
-            //         console.log("Successfully uploaded data to " + params.Bucket);
+            //     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            //         const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            //         const byteNumbers = new Array(slice.length);
+            //         for (let i = 0; i < slice.length; i++) {
+            //             byteNumbers[i] = slice.charCodeAt(i);
+            //         }
+
+            //         const byteArray = new Uint8Array(byteNumbers);
+            //         byteArrays.push(byteArray);
             //     }
-            // });
 
-            const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
-                const byteCharacters = atob(b64Data);
-                const byteArrays = [];
+            //     const blob = new Blob(byteArrays, {
+            //         type: contentType
+            //     });
+            //     return blob;
+            // }
 
-                for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-                    const byteNumbers = new Array(slice.length);
-                    for (let i = 0; i < slice.length; i++) {
-                        byteNumbers[i] = slice.charCodeAt(i);
-                    }
-
-                    const byteArray = new Uint8Array(byteNumbers);
-                    byteArrays.push(byteArray);
-                }
-
-                const blob = new Blob(byteArrays, {
-                    type: contentType
-                });
-                return blob;
-            }
-
-            const contentType = 'image/png';
-            const b64Data = encoded_dataURL;
+            // const contentType = 'image/png';
+            // const b64Data = encoded_dataURL;
             // const blob = b64toBlob(b64Data, contentType);
             // const blobUrl = URL.createObjectURL(blob);
             // const img = document.createElement('img');
@@ -526,8 +548,8 @@
             //         console.log("There was an error uploading your photo: ", err.message);
             //     }
             // );
-        }
 
+        }
         user_name();
     </script>
 </body>
