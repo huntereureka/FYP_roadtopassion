@@ -19,12 +19,12 @@ const diploma_raec_max_arr=[raec_max_1,raec_max_2,raec_max_3,raec_max_4,raec_max
 const max_score_2_1=[5,0,0,-1,-1];
 const max_score_2_2=[0,5,0,-1,-1];
 const max_score_2_3=[0,0,5,-1,0];
-const max_score_2_4=[0,0,0,5,0];
-const max_score_2_5=[0,0,3,0,5];
+const max_score_2_4=[-1,-1,-1,5,0];
+const max_score_2_5=[0,0,-1,0,5];
 const max_score_2_6=[-1,3,5,-1,3];
 const max_score_2_7=[0,0,4,5,4];
-const max_score_2_8=[4,0,0,5,4];
-const max_score_2_9=[4,5,0,-1,-1];
+const max_score_2_8=[4,0,-1,5,4];
+const max_score_2_9=[4,5,-1,-1,-1];
 const score_part2=[max_score_2_1,max_score_2_2,max_score_2_3,max_score_2_4,max_score_2_5,max_score_2_6,max_score_2_7,max_score_2_8,max_score_2_9];
 
 const DIPLOMA_NUM=5;
@@ -107,7 +107,7 @@ function LimitValue(value, max)
     return value;
   } else {
     if (value>=4) {
-      return -value+1;
+      return -value+2;
     }
     return 0;
   }
