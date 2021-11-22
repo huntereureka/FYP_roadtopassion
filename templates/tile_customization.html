@@ -196,6 +196,8 @@
                 alert("String contains symbols")
             }
         } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
+        console.log("Total width is (w3 schools): " + screen.width);
+        console.log("Width in pixels is (geeksforgeeks): " + document.documentElement.clientWidth);
 
         $('.hover_bkgr_fricc').click(function() {
             $('.hover_bkgr_fricc').hide();
