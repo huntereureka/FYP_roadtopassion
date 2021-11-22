@@ -36,9 +36,7 @@ const slider_bar_score=[];
 const PART_ONE_QN_NUM=8;
 const MAX_QN_NUM=17;
 var current_qn=0;
-var qns_counter_one=0;
-var qns_counter_three=0;
-var qns_counter_five=0;
+const qns_counter=[0,0,0,0,0];
 
 const display_qns_txt=document.getElementById("qns"); //text display question
 const slider_bar=document.getElementById("myRange");
@@ -125,13 +123,7 @@ function GetDiplomaScoreRAEC(user_score, dip_max)
 
 function AddCount(range)
 {
-  if (range==1) {
-    qns_counter_one++;
-  } else if (range==3) {
-    qns_counter_three++;
-  } else if (range==5) {
-    qns_counter_five++;
-  }
+  qns_counter[range-1]++;
 }
 
 function CalculateDiplomaScore()
@@ -197,9 +189,13 @@ function OnNext()
 }
 
 // Assigning scores based on diploma
-function AssignDiploma() {
-  if (qns_counter_one>=7 || qns_counter_three>=7 || qns_counter_five>=7) {
-    return ("cict");
+function AssignDiploma()
+{
+  var i;
+  for (i=0;i<5;i++) {
+    if (qns_counter[i]>=7) {
+      return ("cict");
+    }
   }
   quickSort(user_diploma_score,user_diploma_id,0,DIPLOMA_NUM-1);
   if (user_diploma_id[DIPLOMA_NUM-1]==user_diploma_id[DIPLOMA_NUM-2]) { // 2 highest num
