@@ -439,9 +439,9 @@
             })
 
             var dataURL = stage.toDataURL();
-            console.log("dataURL: " + dataURL);
-            var encoded_dataURL = atob(dataURL);
-            console.log("encoded dataURL: " + encoded_dataURL);
+            // console.log("dataURL: " + dataURL);
+            // var encoded_dataURL = atob(dataURL);
+            // console.log("encoded dataURL: " + encoded_dataURL);
 
             // let image_url = new Blob([dataURL], {
             //     type: 'text/plain'
@@ -456,7 +456,7 @@
             var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
-                Body: encoded_dataURL
+                Body: img
             };
 
             s3.putObject(params, function(err, res) {
@@ -466,6 +466,37 @@
                     console.log("Successfully uploaded data to " + params.Bucket);
                 }
             });
+
+            const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
+                const byteCharacters = atob(b64Data);
+                const byteArrays = [];
+
+                for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                    const byteNumbers = new Array(slice.length);
+                    for (let i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
+                    }
+
+                    const byteArray = new Uint8Array(byteNumbers);
+                    byteArrays.push(byteArray);
+                }
+
+                const blob = new Blob(byteArrays, {
+                    type: contentType
+                });
+                return blob;
+            }
+
+            const contentType = 'image/png';
+            const b64Data = dataURL;
+            const blob = b64toBlob(b64Data, contentType);
+            const blobUrl = URL.createObjectURL(blob);
+            const img = document.createElement('img');
+            img.src = blobUrl;
+
+            console.log(img);
 
             // var upload = new AWS.S3.ManagedUpload({
             // params: {
