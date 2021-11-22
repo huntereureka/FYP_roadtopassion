@@ -440,7 +440,7 @@
 
             var dataURL = stage.toDataURL();
             // console.log("dataURL: " + dataURL);
-            // var encoded_dataURL = atob(dataURL);
+            var encoded_dataURL = encodeURIComponent(dataURL);
             // console.log("encoded dataURL: " + encoded_dataURL);
 
             // let image_url = new Blob([dataURL], {
@@ -500,7 +500,7 @@
             }
 
             const contentType = 'image/png';
-            const b64Data = dataURL;
+            const b64Data = encoded_dataURL;
             const blob = b64toBlob(b64Data, contentType);
             const blobUrl = URL.createObjectURL(blob);
             const img = document.createElement('img');
