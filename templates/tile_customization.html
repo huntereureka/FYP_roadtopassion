@@ -279,8 +279,8 @@
         var dimensions = screen.width;
         var stage = new Konva.Stage({
             container: 'container',
-            width: dimensions,
-            height: dimensions,
+            width: 350,
+            height: 350,
         });
 
         // creating container
@@ -303,10 +303,10 @@
         // defining background image
         var imageObj = new Image();
         var background = new Konva.Rect({
-            x: ((stage.width() - 360) / 2),
-            y: ((stage.height() - 360) / 2),
-            width: 360,
-            height: 360,
+            x: ((stage.width() - 350) / 2),
+            y: ((stage.height() - 350) / 2),
+            width: 350,
+            height: 350,
             image: imageObj,
             listening: false, // because we don't need any events on the background
         });
@@ -441,7 +441,7 @@
             });
         }
 
-        // upload to s3 bucket a
+        // upload to s3 bucket
         function uploadImage() {
             const s3 = new AWS.S3({ // load credentials for s3
                 accessKeyId: "AKIARZFVAVYWKZXHGKN4",
@@ -450,7 +450,6 @@
             })
 
             var dataURL = stage.toDataURL();
-            console.log(dataURL);
             var file = dataURLtoFile(dataURL, 'a.png');
 
             var params = {
@@ -466,90 +465,6 @@
                     console.log("Successfully uploaded data to " + params.Bucket);
                 }
             });
-
-            // function encode_utf8(s) {
-            //     return unescape(encodeURIComponent(s))
-            // }
-
-            // function decode_utf8(s) {
-            //     return decodeURIComponent(escape(s));
-            // }
-
-            // var dataURL = stage.toDataURL();
-            // console.log("dataURL: " + dataURL);
-            // var encoded_dataURL = encodeURIComponent(dataURL);
-            // console.log("b64 data: " + encoded_dataURL);
-
-            // let image_url = new Blob([dataURL], {
-            //     type: 'text/plain'
-            // });
-            // test_image = URL.createObjectURL(image_url);
-
-            // function downloadURI(uri) {
-            //     var link = document.createElement('a');
-            //     link.download = name;
-            //     link.href = uri;
-            //     document.body.appendChild(link);
-            //     link.click();
-            //     document.body.removeChild(link);
-            //     delete link;
-            // }
-
-            // var dataURL = stage.toDataURL({
-            //     pixelRatio: 3
-            // });
-            // const test = downloadURI(dataURL, 'stage.png');
-
-            // const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
-            //     const byteCharacters = atob(b64Data);
-            //     const byteArrays = [];
-
-            //     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            //         const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            //         const byteNumbers = new Array(slice.length);
-            //         for (let i = 0; i < slice.length; i++) {
-            //             byteNumbers[i] = slice.charCodeAt(i);
-            //         }
-
-            //         const byteArray = new Uint8Array(byteNumbers);
-            //         byteArrays.push(byteArray);
-            //     }
-
-            //     const blob = new Blob(byteArrays, {
-            //         type: contentType
-            //     });
-            //     return blob;
-            // }
-
-            // const contentType = 'image/png';
-            // const b64Data = encoded_dataURL;
-            // const blob = b64toBlob(b64Data, contentType);
-            // const blobUrl = URL.createObjectURL(blob);
-            // const img = document.createElement('img');
-            // img.src = blobUrl;
-            // console.log("b64 data: " + b64Data)
-            // console.log("img data: " + img);
-
-            // var upload = new AWS.S3.ManagedUpload({
-            // params: {
-            //     Bucket: 'fypj2022',
-            //     Key: 'test_tile.png',
-            //     Body: dataURL
-            // }
-            // });
-
-            // var promise = upload.promise();
-
-            // promise.then(
-            //     function(data) {
-            //         console.log("Successfully uploaded photo.");
-            //     },
-            //     function(err) {
-            //         console.log("There was an error uploading your photo: ", err.message);
-            //     }
-            // );
-
         }
         user_name();
     </script>
