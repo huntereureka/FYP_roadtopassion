@@ -439,14 +439,14 @@
             })
 
             var dataURL = stage.toDataURL();
-            // console.log("dataURL: " + dataURL);
-            // var encoded_dataURL = encode_utf8(dataURL);
-            // console.log("encoded dataURL: " + encoded_dataURL);
+            console.log("dataURL: " + dataURL);
+            var encoded_dataURL = encodeURIComponent(dataURL);
+            console.log("encoded dataURL: " + encoded_dataURL);
 
-            let image_url = new Blob([dataURL], {
-                type: 'text/plain'
-            });
-            test_image = URL.createObjectURL(image_url);
+            // let image_url = new Blob([dataURL], {
+            //     type: 'text/plain'
+            // });
+            // test_image = URL.createObjectURL(image_url);
 
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
@@ -456,7 +456,7 @@
             var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
-                Body: test_image
+                Body: encoded_dataURL
             };
 
             s3.putObject(params, function(err, res) {
