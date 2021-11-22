@@ -440,7 +440,7 @@
 
             var dataURL = stage.toDataURL();
             console.log("dataURL: " + dataURL);
-            var encoded_dataURL = btoa(dataURL);
+            var encoded_dataURL = atob(dataURL);
             console.log("encoded dataURL: " + encoded_dataURL);
 
             // let image_url = new Blob([dataURL], {
