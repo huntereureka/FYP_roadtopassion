@@ -237,10 +237,12 @@
         // defining background image
         var imageObj = new Image();
         var background = new Konva.Rect({
-            x: ((stage.width() - 350) / 2),
-            y: ((stage.height() - 350) / 2),
-            width: 350,
-            height: 350,
+            // x: ((stage.width() - 350) / 2),
+            // y: ((stage.height() - 350) / 2),
+            x: (stage.width() / 2),
+            y: (stage.height() / 2),
+            width: 360,
+            height: 360,
             image: imageObj,
             listening: false, // because we don't need any events on the background
         });
