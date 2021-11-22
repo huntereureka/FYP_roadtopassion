@@ -431,45 +431,45 @@
                 region: "us-east-2"
             })
 
-            var dataURL = stage.toDataURL();
-            
+            // var dataURL = stage.toDataURL();
+
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
             // });
             // downloadURI(dataURL, 'stage.png');
 
-            // var params = {
-            //     Bucket: 'fypj2022',
-            //     Key: 'test_tile.png',
-            //     Body: dataURL
-            // };
-
-            // s3.putObject(params, function(err, res) {
-            //     if (err) {
-            //         console.log("ERROR: ", err);
-            //     } else {
-            //         console.log("Successfully uploaded data to " + params.Bucket);
-            //     }
-            // });
-            
-            var upload = new AWS.S3.ManagedUpload({
-            params: {
+            var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
-                Body: dataURL
-            }
+                Body: stage
+            };
+
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to " + params.Bucket);
+                }
             });
 
-            var promise = upload.promise();
+            // var upload = new AWS.S3.ManagedUpload({
+            //     params: {
+            //         Bucket: 'fypj2022',
+            //         Key: 'test_tile.png',
+            //         Body: dataURL
+            //     }
+            // });
 
-  promise.then(
-    function(data) {
-      console.log("Successfully uploaded photo.");
-    },
-    function(err) {
-      console.log("There was an error uploading your photo: ", err.message);
-    }
-  );
+            // var promise = upload.promise();
+
+            // promise.then(
+            //     function(data) {
+            //         console.log("Successfully uploaded photo.");
+            //     },
+            //     function(err) {
+            //         console.log("There was an error uploading your photo: ", err.message);
+            //     }
+            // );
         }
 
         // function downloadURI(uri) {
