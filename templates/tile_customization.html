@@ -322,25 +322,25 @@
         if (randomInt === 1) {
             // console.log("output is 1");
             imageObj.src = '/static/tiles/dbft/dbft-1.png';
-            tile_name = "asdsadasd_3_1";
+            tile_name = "asdsadasd_3_1.jpg";
         }
 
         if (randomInt === 2) {
             // console.log("output is 2");
             imageObj.src = '/static/tiles/dbft/dbft-2.png';
-            tile_name = "asdsadasd_3_2";
+            tile_name = "asdsadasd_3_2.jpg";
         }
 
         if (randomInt === 3) {
             // console.log("output is 3");
             imageObj.src = '/static/tiles/dbft/dbft-3.png';
-            tile_name = "asdsadasd_3_3";
+            tile_name = "asdsadasd_3_3.jpg";
         }
 
         if (randomInt === 4) {
             // console.log("output is 4");
             imageObj.src = '/static/tiles/dbft/dbft-4.png';
-            tile_name = "asdsadasd_3_4";
+            tile_name = "asdsadasd_3_4.jpg";
         }
 
         var fillPatternImage = background.fillPatternImage(); // get fill pattern image
@@ -449,6 +449,7 @@
                 region: "us-east-2"
             })
 
+            var dataURL = stage.toDataURL();
             var b64text = encodeURIComponent(dataURL);
             var file = dataURLtoFile(b64text, 'a.png');
 
