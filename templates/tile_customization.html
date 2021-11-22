@@ -435,6 +435,8 @@
             })
 
             var dataURL = stage.toDataURL();
+            var encoded_dataURL = encode_utf8(dataURL);
+            console.log(encoded_dataURL);
 
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
@@ -444,7 +446,7 @@
             var params = {
                 Bucket: 'fypj2022',
                 Key: 'test_tile.png',
-                Body: encode_utf8(dataURL)
+                Body: encoded_dataURL
             };
 
             s3.putObject(params, function(err, res) {
