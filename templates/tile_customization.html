@@ -439,8 +439,9 @@
             })
 
             var dataURL = stage.toDataURL();
-            var decoded_dataURL = decode_utf8(dataURL);
-            console.log(decoded_dataURL);
+            console.log("dataURL: " + dataURL);
+            var encoded_dataURL = encode_utf8(dataURL);
+            console.log("encoded dataURL: " + encoded_dataURL);
 
             // var dataURL = stage.toDataURL({
             //     pixelRatio: 3
