@@ -450,7 +450,9 @@
             })
 
             var dataURL = stage.toDataURL();
+            console.log(dataURL);
             var b64text = encodeURIComponent(dataURL);
+            console.log(b64text);
             var file = dataURLtoFile(b64text, 'a.png');
 
             var params = {
