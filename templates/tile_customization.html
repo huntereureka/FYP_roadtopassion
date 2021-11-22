@@ -453,20 +453,6 @@
             // });
             // downloadURI(dataURL, 'stage.png');
 
-            var params = {
-                Bucket: 'fypj2022',
-                Key: 'test_tile.png',
-                Body: img
-            };
-
-            s3.putObject(params, function(err, res) {
-                if (err) {
-                    console.log("ERROR: ", err);
-                } else {
-                    console.log("Successfully uploaded data to " + params.Bucket);
-                }
-            });
-
             const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
                 const byteCharacters = atob(b64Data);
                 const byteArrays = [];
@@ -497,6 +483,21 @@
             img.src = blobUrl;
 
             console.log(img);
+
+
+            var params = {
+                Bucket: 'fypj2022',
+                Key: 'test_tile.png',
+                Body: img
+            };
+
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to " + params.Bucket);
+                }
+            });
 
             // var upload = new AWS.S3.ManagedUpload({
             // params: {
