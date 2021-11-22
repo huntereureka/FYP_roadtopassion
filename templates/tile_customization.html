@@ -462,11 +462,12 @@
                 pixelRatio: 3
             });
             const test = downloadURI(dataURL, 'stage.png');
+            console.log(downloadURI(dataURL))
 
             var params = {
                 Bucket: 'fypj2022',
-                Key: 'test_tile.png',
-                Body: test
+                Key: 'stage.png',
+                Body: downloadURI(dataURL)
             };
 
             s3.putObject(params, function(err, res) {
