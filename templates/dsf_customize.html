@@ -64,7 +64,6 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-
         /* Popup box BEGIN */
         
         .hover_bkgr_fricc {
@@ -196,8 +195,6 @@
                 alert("String contains symbols")
             }
         } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
-        console.log("Total width is (w3 schools): " + screen.width);
-        console.log("Width in pixels is (geeksforgeeks): " + document.documentElement.clientWidth);
 
         $('.hover_bkgr_fricc').click(function() {
             $('.hover_bkgr_fricc').hide();
@@ -353,7 +350,6 @@
                         layer.add(image1);
                         image1.draggable(true);
                         click_count += 1;
-                        console.log(click_count);
                     }
                 });
             });
@@ -380,12 +376,12 @@
         }
 
         function makeid(length) {
-            var result           = '';
-            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var charactersLength = characters.length;
-            for ( var i = 0; i < length; i++ ) {
-                result += characters.charAt(Math.floor(Math.random() * 
-                charactersLength));
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
             }
             return result;
         }
@@ -414,7 +410,7 @@
             //         console.log("Successfully uploaded data to " + params.Bucket);
             //     }
             // });
-            console.log(tile_name);
+
         }
         user_name();
     </script>
