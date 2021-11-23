@@ -162,8 +162,6 @@ function OnBack() {
     } else if (current_qn == MAX_QN_NUM - 2) { //2nd last question
         document.getElementById("next").style.visibility = "visible";
         document.getElementById("submit").style.visibility = "hidden";
-        document.getElementById("crystal").style.visibility = "hidden";
-
     }
 }
 
@@ -178,7 +176,6 @@ function OnNext() {
         document.getElementById("back").style.visibility = "visible";
     } else if (current_qn == MAX_QN_NUM - 1) { //last question
         document.getElementById("submit").style.visibility = "visible";
-        document.getElementById("crystal").style.visibility = "visible";
         document.getElementById("next").style.visibility = "hidden";
     }
 }
