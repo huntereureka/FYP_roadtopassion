@@ -177,7 +177,7 @@ function OnNext() {
     } else if (current_qn == MAX_QN_NUM - 1) { //last question
         document.getElementById("submit").style.visibility = "visible";
         document.getElementById("next").style.visibility = "hidden";
-        document.getElementById("crystal").style.visibility = "hidden";
+        document.getElementById("crystal").style.visibility = "visible";
     }
 }
 
