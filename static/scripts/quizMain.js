@@ -175,9 +175,10 @@ function OnNext() {
     } else if (current_qn == 1) {
         document.getElementById("back").style.visibility = "visible";
     } else if (current_qn == MAX_QN_NUM - 1) { //last question
-        document.getElementById("submit").style.visibility = "visible";
+        document.getElementById("submit").style.visibility = "hidden";
         document.getElementById("next").style.visibility = "hidden";
         document.getElementById("crystal").style.visibility = "visible";
+        document.getElementById("crystal1").style.visibility = "visible";
     }
 }
 
