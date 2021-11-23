@@ -11,19 +11,19 @@ const score_part1=[max_score_1_1,max_score_1_2,max_score_1_3,max_score_1_4,max_s
 
 const raec_max_1=[15, 0, 0,15]; //dsf
 const raec_max_2=[15, 0,15,15]; //dis
-const raec_max_3=[15, 15,0,15]; //dit
+const raec_max_3=[15, 15,15,0]; //dit
 const raec_max_4=[0, 15,15,15]; //bft
 const raec_max_5=[20,20,20,20]; //bia
 const diploma_raec_max_arr=[raec_max_1,raec_max_2,raec_max_3,raec_max_4,raec_max_5];
 
-const max_score_2_1=[5,0,0,-1,-1];
-const max_score_2_2=[0,5,0,-1,-1];
-const max_score_2_3=[0,0,5,-1,0];
-const max_score_2_4=[-1,-1,-1,5,0];
-const max_score_2_5=[0,0,-1,0,5];
-const max_score_2_6=[-1,3,5,-1,3];
-const max_score_2_7=[0,0,4,5,4];
-const max_score_2_8=[4,0,-1,5,4];
+const max_score_2_1=[5,0,0,0,0];
+const max_score_2_2=[0,5,0,0,0];
+const max_score_2_3=[0,0,5,0,0];
+const max_score_2_4=[0,0,0,5,0];
+const max_score_2_5=[0,0,0,0,5];
+const max_score_2_6=[-1,3,5,-1, 3];
+const max_score_2_7=[ 0,0, 4,5, 4];
+const max_score_2_8=[ 5,0,-1,4, 5];
 const max_score_2_9=[4,5,-1,-1,-1];
 const score_part2=[max_score_2_1,max_score_2_2,max_score_2_3,max_score_2_4,max_score_2_5,max_score_2_6,max_score_2_7,max_score_2_8,max_score_2_9];
 
@@ -101,13 +101,15 @@ function quickSort(array_main,array_id,low,high)
 function LimitValue(value, max)
 {
   if (max>=0) {
-    if (value>max) {
+    if (value==5 && max==5) {
+      return 7;
+    } else if (value>max) {
       return max;
     }
     return value;
   } else {
     if (value>=4) {
-      return -value+2;
+      return -value+1;
     }
     return 0;
   }
