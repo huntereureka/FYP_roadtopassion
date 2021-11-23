@@ -64,7 +64,6 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-
         /* Popup box BEGIN */
         
         .hover_bkgr_fricc {
@@ -380,12 +379,12 @@
         }
 
         function makeid(length) {
-            var result           = '';
-            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var charactersLength = characters.length;
-            for ( var i = 0; i < length; i++ ) {
-                result += characters.charAt(Math.floor(Math.random() * 
-                charactersLength));
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
             }
             return result;
         }
@@ -407,13 +406,13 @@
                 Body: file
             };
 
-            // s3.putObject(params, function(err, res) {
-            //     if (err) {
-            //         console.log("ERROR: ", err);
-            //     } else {
-            //         console.log("Successfully uploaded data to " + params.Bucket);
-            //     }
-            // });
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to " + params.Bucket);
+                }
+            });
             console.log(tile_name);
         }
         user_name();
