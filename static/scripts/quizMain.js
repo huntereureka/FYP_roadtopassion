@@ -23,7 +23,7 @@ const max_score_2_4=[0,0,0,5,0];
 const max_score_2_5=[0,0,0,0,5];
 const max_score_2_6=[-1,3,5,-1, 3];
 const max_score_2_7=[ 0,0, 4,5, 4];
-const max_score_2_8=[ 5,0,-1,4, 5];
+const max_score_2_8=[ 4,0,-1,4, 5];
 const max_score_2_9=[4,5,-1,-1,-1];
 const score_part2=[max_score_2_1,max_score_2_2,max_score_2_3,max_score_2_4,max_score_2_5,max_score_2_6,max_score_2_7,max_score_2_8,max_score_2_9];
 
