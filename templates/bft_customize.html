@@ -142,6 +142,13 @@
         </div>
     </div>
 
+    <div id="menu">
+        <div>
+          <!-- <button id="pulse-button">Pulse</button -->
+          <button id="delete-button">Delete</button>
+        </div>
+    </div>
+
     <div class="page-top" style="background-color: black; color: white; text-align: center; font-size: x-large;">Road to PASSION
     </div>
     <!-- <div id="container" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()"></div> -->
@@ -362,13 +369,6 @@
                 });
             });
 
-        document.getElementById('delete-button').addEventListener('click', () => {
-            const tr = layer.find('Transformer').toArray().find(tr => tr.nodes()[0] === currentShape);
-            tr.destroy();
-            currentShape.destroy();
-            layer.draw();
-        });
-
         function dataURLtoFile(dataurl, filename) {
             var arr = dataurl.split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -382,6 +382,37 @@
                 type: mime
             });
         }
+
+        var menuNode = document.getElementById('menu');
+        document.getElementById('delete-button').addEventListener('click', () => {
+          const tr = layer.find('Transformer').toArray().find(tr => tr.nodes()[0] === currentShape);
+          tr.destroy();
+          currentShape.destroy();
+          layer.draw();
+        });
+
+        window.addEventListener('click', () => {
+          // hide menu
+          menuNode.style.display = 'none';
+        });
+
+        stage.on('contextmenu', function (e) {
+          // prevent default behavior
+          e.evt.preventDefault();
+          if (e.target === stage) {
+            // if we are on empty place of the stage we will do nothing
+            return;
+          }
+          currentShape = e.target;
+          console.log(currentShape);
+          // show menu
+          menuNode.style.display = 'initial';
+          var containerRect = stage.container().getBoundingClientRect();
+          menuNode.style.top =
+            containerRect.top + stage.getPointerPosition().y + 4 + 'px';
+          menuNode.style.left =
+            containerRect.left + stage.getPointerPosition().x + 4 + 'px';
+        });
 
         function makeid(length) {
             var result = '';
@@ -411,13 +442,13 @@
                 Body: file
             };
 
-            // s3.putObject(params, function(err, res) {
-            //     if (err) {
-            //         console.log("ERROR: ", err);
-            //     } else {
-            //         console.log("Successfully uploaded data to " + params.Bucket);
-            //     }
-            // });
+            s3.putObject(params, function(err, res) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    console.log("Successfully uploaded data to " + params.Bucket);
+                }
+            });
             console.log(tile_name);
         }
         user_name();
@@ -425,75 +456,3 @@
 </body>
 
 </html>
-
-<!-- 
-        // document.getElementById('save').addEventListener(
-        //     'click',
-        //     function() {
-        //         tr.nodes([]);
-        //         var dataURL = stage.toDataURL({
-        //             pixelRatio: 3
-        //         });
-        //         downloadURI(dataURL, 'stage.png');
-        //     },
-        //     false
-        // );
-
-        // function from https://stackoverflow.com/a/15832662/512042
-
-        // function load_pic_test() {
-        //     $(window).load(function() {
-        //         $(".trigger_popup_fricc").click(function() {
-        //             $('.hover_bkgr_fricc').show();
-        //         });
-        //         $('.hover_bkgr_fricc').click(function() {
-        //             $('.hover_bkgr_fricc').hide();
-        //         });
-        //         $('.popupCloseButton').click(function() {
-        //             $('.hover_bkgr_fricc').hide();
-        //         });
-        //     });
-        // }
-
-        // function load_desc() {
-        //     $('.hover_bkgr_fricc').click(function() {
-        //         $('.hover_bkgr_fricc').hide();
-        //     });
-        //     $('.popupCloseButton').click(function() {
-        //         $('.hover_bkgr_fricc').hide();
-        //     });
-        // };
-
-        // $(function () {
-        //     // Bind the swipeHandler callback function to the swipe event on div.box
-        //     $("canvas").on("swipe", swipeHandler);
-
-        //     // Callback function references the event target and adds the 'swipe' class to it
-        //     function swipeHandler(event) {
-        //         tr.nodes([]);
-        //         var dataURL = stage.toDataURL({
-        //             pixelRatio: 3
-        //         });
-        //         downloadURI(dataURL, 'stage.png');
-        //     }
-        // });
-
-        // var startingX, startingY, movingX, movingY;
-
-        // function touchStart(evt) {
-        //     startingX = evt.touches[0].clientX;
-        //     startingY = evt.touches[0].clientY;
-        // }
-
-        // function touchMove(evt) {
-        //     movingX = evt.touches[0].clientX;
-        //     movingY = evt.touches[0].clientY;
-        // }
-
-        // function touchEnd() {
-        //     if (startingY - 100 > movingY) {
-        //         console.log('up');
-        //         alert('swipe up detected');
-        //     }
-        // }
--->
