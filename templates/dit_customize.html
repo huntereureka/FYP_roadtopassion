@@ -24,6 +24,8 @@
             margin: 0;
             padding: 0;
             background-color: #1ec5aa;
+            height: 100%;
+            overflow-y: hidden;
         }
         
         #buttons>input {
@@ -145,7 +147,8 @@
     <!-- <div id="container" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()"></div> -->
     <div id="container"></div>
 
-    <p><b>You can have a maximum of 8 stickers!</b></p>
+    <p><b>Tap on any sticker below to add it to the tile above! 
+        You can have a maximum of 8 stickers.</b></p>
     <div id="drag-items" class="scroll">
         <img src="/static/icons/analysis.png" />
         <img src="/static/icons/analytics.png" />
@@ -169,10 +172,10 @@
         <img src="/static/icons/vr.png" />
 
     </div>
-    <button id="save" onclick="uploadImage()">Save as image</button></div>
+    <button id="save" onclick="uploadImage()" style="float: right;">Upload my tile!</button></div>
 
     <script>
-        var inputName = "";
+        var inputName = " ";
         var randomInt = "";
         var format_symbols = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         var format_numbers = /\d/;
@@ -184,17 +187,17 @@
 
         do {
             inputName = prompt("Enter your name: ")
-            inputName = inputName.toLowerCase()
-            if (inputName == "" || inputName == null) {
-                alert("String is empty")
-            } else if (inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || inputName.toLowerCase() == "fuck you") {
-                alert("String contains vulgarities")
-            } else if (format_numbers.test(inputName)) {
-                alert("String contains number")
-            } else if (format_symbols.test(inputName)) {
-                alert("String contains symbols")
+            inputName_check = inputName.toLowerCase()
+            if (inputName_check == "" || inputName_check == null) {
+                alert("Your name cannot be empty!")
+            } else if (inputName_check.toLowerCase() == "fuck" || inputName_check.toLowerCase() == "nabei" || inputName_check.toLowerCase() == "cb" || inputName_check.toLowerCase() == "sohai" || inputName_check.toLowerCase() == "mf" || inputName_check.toLowerCase() == "fuck you") {
+                alert("Your name should not contain vulagrities!")
+            } else if (format_numbers.test(inputName_check)) {
+                alert("Your name should not contain a number!")
+            } else if (format_symbols.test(inputName_check)) {
+                alert("Your name should not have symbols!")
             }
-        } while (inputName.toLowerCase() == "" || inputName.toLowerCase() == null || inputName.toLowerCase() == "fuck" || inputName.toLowerCase() == "nabei" || inputName.toLowerCase() == "cb" || inputName.toLowerCase() == "sohai" || inputName.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName.toLowerCase() == "fuck you");
+        } while (inputName_check.toLowerCase() == "" || inputName_check.toLowerCase() == null || inputName_check.toLowerCase() == "fuck" || inputName_check.toLowerCase() == "nabei" || inputName_check.toLowerCase() == "cb" || inputName_check.toLowerCase() == "sohai" || inputName_check.toLowerCase() == "mf" || format_numbers.test(inputName) == true || format_symbols.test(inputName) == true || inputName_check.toLowerCase() == "fuck you");
 
         $('.hover_bkgr_fricc').click(function() {
             $('.hover_bkgr_fricc').hide();
@@ -222,11 +225,11 @@
 
         var simpleText = new Konva.Text({
             x: 0,
-            y: 15,
+            y: 320,
             text: inputName,
             fontSize: 35,
             fontFamily: 'Comic Sans MS',
-            fill: 'white',
+            fill: 'black',
         });
 
         // to align text in the middle of the screen, we can set the
@@ -304,6 +307,11 @@
                 return;
             }
 
+            if (e.target === simpleText) {
+                tr.nodes([]);
+                return;
+            }
+
             // do we pressed shift or ctrl?
             const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
             const isSelected = tr.nodes().indexOf(e.target) >= 0;
@@ -354,13 +362,6 @@
                 });
             });
 
-        document.getElementById('delete-button').addEventListener('click', () => {
-            const tr = layer.find('Transformer').toArray().find(tr => tr.nodes()[0] === currentShape);
-            tr.destroy();
-            currentShape.destroy();
-            layer.draw();
-        });
-
         function dataURLtoFile(dataurl, filename) {
             var arr = dataurl.split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -410,81 +411,10 @@
                     console.log("Successfully uploaded data to " + params.Bucket);
                 }
             });
+            console.log(tile_name);
         }
         user_name();
     </script>
 </body>
 
 </html>
-
-<!-- 
-        // document.getElementById('save').addEventListener(
-        //     'click',
-        //     function() {
-        //         tr.nodes([]);
-        //         var dataURL = stage.toDataURL({
-        //             pixelRatio: 3
-        //         });
-        //         downloadURI(dataURL, 'stage.png');
-        //     },
-        //     false
-        // );
-
-        // function from https://stackoverflow.com/a/15832662/512042
-
-        // function load_pic_test() {
-        //     $(window).load(function() {
-        //         $(".trigger_popup_fricc").click(function() {
-        //             $('.hover_bkgr_fricc').show();
-        //         });
-        //         $('.hover_bkgr_fricc').click(function() {
-        //             $('.hover_bkgr_fricc').hide();
-        //         });
-        //         $('.popupCloseButton').click(function() {
-        //             $('.hover_bkgr_fricc').hide();
-        //         });
-        //     });
-        // }
-
-        // function load_desc() {
-        //     $('.hover_bkgr_fricc').click(function() {
-        //         $('.hover_bkgr_fricc').hide();
-        //     });
-        //     $('.popupCloseButton').click(function() {
-        //         $('.hover_bkgr_fricc').hide();
-        //     });
-        // };
-
-        // $(function () {
-        //     // Bind the swipeHandler callback function to the swipe event on div.box
-        //     $("canvas").on("swipe", swipeHandler);
-
-        //     // Callback function references the event target and adds the 'swipe' class to it
-        //     function swipeHandler(event) {
-        //         tr.nodes([]);
-        //         var dataURL = stage.toDataURL({
-        //             pixelRatio: 3
-        //         });
-        //         downloadURI(dataURL, 'stage.png');
-        //     }
-        // });
-
-        // var startingX, startingY, movingX, movingY;
-
-        // function touchStart(evt) {
-        //     startingX = evt.touches[0].clientX;
-        //     startingY = evt.touches[0].clientY;
-        // }
-
-        // function touchMove(evt) {
-        //     movingX = evt.touches[0].clientX;
-        //     movingY = evt.touches[0].clientY;
-        // }
-
-        // function touchEnd() {
-        //     if (startingY - 100 > movingY) {
-        //         console.log('up');
-        //         alert('swipe up detected');
-        //     }
-        // }
--->
