@@ -50,7 +50,7 @@ const questions=[
     "Organize or sort your items",
     "Simplify complex tasks",
     "Make a problem solving application",
-    "Plan out a camping trip for secondary school students",
+    "Plan a marketing strategy for a new company",
     "Deliver a motivational speech",
 //Part 2
     "Investigating the aftermath of a cyberattack",
