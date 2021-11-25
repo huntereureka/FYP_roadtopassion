@@ -185,7 +185,7 @@
             return Math.floor(Math.random() * max);
         }
 
-        do {
+        do { // input validation
             inputName = prompt("Enter your name: ")
             inputName_check = inputName.toLowerCase()
             if (inputName_check == "" || inputName_check == null) {
@@ -223,6 +223,7 @@
         var layer = new Konva.Layer();
         // stage.add(layer); IMPORTANT
 
+        // naming of user
         var simpleText = new Konva.Text({
             x: 0,
             y: 320,
@@ -257,6 +258,7 @@
 
         randomInt = (getRandomInt(4)) + 1;
 
+        // setting the tile type randomly
         if (randomInt === 1) {
             // console.log("output is 1");
             imageObj.src = '/static/tiles/dba/dba-1.png';
@@ -362,6 +364,7 @@
                 });
             });
 
+        // converting dataURL to File so that it can be uploaded
         function dataURLtoFile(dataurl, filename) {
             var arr = dataurl.split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -376,6 +379,7 @@
             });
         }
 
+        // make random string to prevent clashing when reading tiles
         function makeid(length) {
             var result = '';
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -398,12 +402,13 @@
             var dataURL = stage.toDataURL();
             var file = dataURLtoFile(dataURL, 'a.png');
 
+            // setting parameters to upload
             var params = {
                 Bucket: 'fypj2022',
                 Key: tile_name,
                 Body: file
             };
-
+            // upload to bucket
             s3.putObject(params, function(err, res) {
                 if (err) {
                     console.log("ERROR: ", err);

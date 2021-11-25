@@ -68,25 +68,3 @@ app.use('/', router);
 app.use(express.static(__dirname + '/static'));
 app.listen(process.env.port || 3000);
 console.log('Running at Port 3000');
-
-// AWS.config.update({
-//     accessKeyId: "AKIARZFVAVYWMD4HEKVH",
-//     secretAccessKey: "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",
-//     // region: "ap-southeast-1" not needed for S3
-// });
-
-//var s3 = new AWS.S3();
-
-// var params = {
-//     Bucket: 'fypj2022/tile_images',
-//     Key: 'mykey.txt',
-//     Body: "HelloWorld"
-// };
-
-// s3.putObject(params, function(err, res) {
-//     if (err) {
-//         console.log("Error uploading data: ", err);
-//     } else {
-//         console.log("Successfully uploaded data to" + params.Bucket);
-//     }
-// });
